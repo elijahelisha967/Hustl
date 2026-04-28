@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hustl — Simple Tasks. Real Income.</title>
+<meta name="description" content="Hustl connects Nigerian students with businesses for real digital work and fast earnings. Join the platform built for the hustle generation."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
+body{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  background:#F8FAFC;
+  color:#0F172A;
+  overflow-x:hidden;
+  cursor:none;
+}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+button{border:none;cursor:none;font-family:inherit}
+
+/* ═══════════════════════════════════════════════════
+   CSS CUSTOM PROPERTIES
+═══════════════════════════════════════════════════ */
+:root{
+  --g:#22C55E;
+  --g-light:#4ADE80;
+  --g-dark:#16A34A;
+  --g-dim:rgba(34,197,94,.12);
+  --navy:#0F172A;
+  --navy-2:#1E293B;
+  --navy-3:#334155;
+  --slate:#64748B;
+  --amber:#F59E0B;
+  --amber-dim:rgba(245,158,11,.12);
+  --bg:#F8FAFC;
+  --bg-2:#F1F5F9;
+  --white:#FFFFFF;
+  --border:#E2E8F0;
+  --border-dark:rgba(255,255,255,.1);
+  --r:14px;
+  --r-lg:22px;
+  --r-xl:32px;
+  --sh:0 4px 24px rgba(15,23,42,.07);
+  --sh-lg:0 16px 56px rgba(15,23,42,.14);
+  --sh-g:0 8px 32px rgba(34,197,94,.3);
+  --font-d:'Bricolage Grotesque',sans-serif;
+}
+
+/* ═══════════════════════════════════════════════════
+   CUSTOM CURSOR
+═══════════════════════════════════════════════════ */
+#cursor{
+  position:fixed;width:10px;height:10px;
+  background:var(--g);border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:transform .15s ease,width .2s ease,height .2s ease,background .2s ease;
+}
+#cursor-ring{
+  position:fixed;width:34px;height:34px;
+  border:1.5px solid rgba(34,197,94,.5);
+  border-radius:50%;pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:transform .35s ease,width .25s ease,height .25s ease,opacity .25s ease;
+}
+body:has(a:hover) #cursor{transform:translate(-50%,-50%) scale(2.5);background:var(--g-light)}
+body:has(.btn:hover) #cursor{transform:translate(-50%,-50%) scale(0);opacity:0}
+
+/* ═══════════════════════════════════════════════════
+   TYPOGRAPHY
+═══════════════════════════════════════════════════ */
+h1,h2,h3,h4,h5{font-family:var(--font-d);line-height:1.08;letter-spacing:-.02em}
+h1{font-size:clamp(2.6rem,6.5vw,5rem);font-weight:800}
+h2{font-size:clamp(2rem,4.5vw,3.4rem);font-weight:700}
+h3{font-size:clamp(1.15rem,2.5vw,1.55rem);font-weight:700}
+h4{font-size:1.1rem;font-weight:600;letter-spacing:-.01em}
+p{line-height:1.72;color:var(--slate)}
+
+/* ═══════════════════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════════════════ */
+.wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 1.75rem}
+section{padding:7rem 0}
+.section-eyebrow{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--g-dim);border:1px solid rgba(34,197,94,.25);
+  color:var(--g-dark);border-radius:100px;
+  padding:.35rem 1rem;font-size:.78rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;margin-bottom:1.25rem;
+}
+.section-eyebrow .dot{
+  width:6px;height:6px;background:var(--g);border-radius:50%;
+  animation:blink 1.8s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.section-head{margin-bottom:.85rem}
+.section-sub{font-size:1.08rem;max-width:560px;margin-bottom:3.5rem}
+
+/* ═══════════════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════════════ */
+.btn{
+  display:inline-flex;align-items:center;gap:.55rem;
+  padding:.9rem 1.9rem;border-radius:100px;
+  font-family:var(--font-d);font-weight:700;font-size:.92rem;
+  letter-spacing:.01em;transition:all .22s ease;border:2px solid transparent;
+  cursor:none;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-green{background:var(--g);color:var(--navy);box-shadow:var(--sh-g)}
+.btn-green:hover{background:var(--g-light);box-shadow:0 12px 40px rgba(34,197,94,.42)}
+.btn-dark{background:var(--navy);color:var(--white);box-shadow:var(--sh)}
+.btn-dark:hover{background:var(--navy-2);box-shadow:var(--sh-lg)}
+.btn-ghost{background:transparent;color:var(--white);border-color:rgba(255,255,255,.28)}
+.btn-ghost:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.5)}
+.btn-ghost-dark{background:transparent;color:var(--navy);border-color:var(--border)}
+.btn-ghost-dark:hover{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.btn-amber{background:var(--amber);color:var(--navy);box-shadow:0 6px 24px rgba(245,158,11,.28)}
+.btn-amber:hover{background:#FBBF24;box-shadow:0 10px 36px rgba(245,158,11,.4)}
+.btn-wa{background:#25D366;color:#fff;box-shadow:0 6px 24px rgba(37,211,102,.3)}
+.btn-wa:hover{background:#1aae56;box-shadow:0 10px 36px rgba(37,211,102,.42)}
+.btn-lg{padding:1.1rem 2.4rem;font-size:1rem}
+
+/* ═══════════════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════════════ */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:1.1rem 0;transition:all .3s ease;
+}
+#nav.scrolled{
+  background:rgba(15,23,42,.94);
+  backdrop-filter:blur(20px);
+  padding:.75rem 0;
+  box-shadow:0 2px 32px rgba(0,0,0,.24);
+}
+.nav-wrap{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-d);font-weight:800;font-size:1.75rem;color:#fff;letter-spacing:-.04em}
+.nav-logo em{color:var(--g);font-style:normal}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,.7);font-size:.88rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-actions{display:flex;align-items:center;gap:.75rem}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:4px;cursor:none}
+.hamburger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:all .28s ease;display:block}
+.hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* Mobile menu */
+#mob-menu{
+  position:fixed;inset:0;background:var(--navy);z-index:199;
+  display:none;flex-direction:column;align-items:center;justify-content:center;gap:2.25rem;
+}
+#mob-menu.open{display:flex}
+#mob-menu a{font-family:var(--font-d);font-size:2rem;font-weight:700;color:#fff;transition:color .2s}
+#mob-menu a:hover{color:var(--g)}
+.mob-ctas{display:flex;flex-direction:column;align-items:center;gap:.85rem;margin-top:.5rem}
+
+/* ═══════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════ */
+#hero{
+  min-height:100vh;background:var(--navy);
+  display:flex;align-items:center;
+  padding:9rem 0 5rem;position:relative;overflow:hidden;
+}
+.hero-bg-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(34,197,94,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(34,197,94,.055) 1px,transparent 1px);
+  background-size:52px 52px;
+}
+.hero-orb-1{
+  position:absolute;top:-15%;right:-8%;
+  width:65vw;height:65vw;max-width:800px;max-height:800px;
+  background:radial-gradient(circle,rgba(34,197,94,.2) 0%,transparent 62%);
+  pointer-events:none;
+}
+.hero-orb-2{
+  position:absolute;bottom:-20%;left:-10%;
+  width:50vw;height:50vw;max-width:600px;max-height:600px;
+  background:radial-gradient(circle,rgba(245,158,11,.1) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero-noise{
+  position:absolute;inset:0;opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat:repeat;background-size:200px;
+}
+.hero-layout{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:center;position:relative;z-index:1;
+}
+.hero-left{color:#fff}
+.hero-kicker{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.28);
+  border-radius:100px;padding:.4rem 1rem;
+  font-size:.78rem;font-weight:700;color:var(--g);
+  letter-spacing:.06em;text-transform:uppercase;margin-bottom:1.5rem;
+}
+.hero-kicker .live-dot{
+  width:7px;height:7px;background:var(--g);border-radius:50%;
+  box-shadow:0 0 0 0 rgba(34,197,94,.4);
+  animation:ripple 1.6s ease-in-out infinite;
+}
+@keyframes ripple{
+  0%{box-shadow:0 0 0 0 rgba(34,197,94,.4)}
+  70%{box-shadow:0 0 0 8px rgba(34,197,94,0)}
+  100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}
+}
+.hero-left h1{margin-bottom:1.35rem;line-height:1.05}
+.hero-left h1 .accent{
+  color:var(--g);
+  background:linear-gradient(135deg,var(--g),var(--g-light));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-sub{font-size:1.12rem;color:rgba(255,255,255,.62);max-width:490px;margin-bottom:2.5rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem}
+.hero-proof{
+  display:flex;align-items:center;gap:2rem;flex-wrap:wrap;
+  padding-top:2rem;border-top:1px solid rgba(255,255,255,.1);
+}
+.proof-stat .num{
+  font-family:var(--font-d);font-weight:800;font-size:1.7rem;color:var(--g);
+  line-height:1;
+}
+.proof-stat .lbl{font-size:.78rem;color:rgba(255,255,255,.42);text-transform:uppercase;letter-spacing:.05em;margin-top:.15rem}
+.proof-div{width:1px;height:32px;background:rgba(255,255,255,.1)}
+
+/* Hero right — floating UI panel */
+.hero-panel{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:var(--r-xl);
+  padding:1.75rem;
+  backdrop-filter:blur(20px);
+  position:relative;
+}
+.panel-top{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:1.25rem;padding-bottom:1.25rem;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.panel-top .pt-label{font-size:.78rem;color:rgba(255,255,255,.45);letter-spacing:.05em;text-transform:uppercase}
+.panel-top .pt-live{
+  display:flex;align-items:center;gap:.4rem;
+  font-size:.75rem;color:var(--g);font-weight:600;
+}
+.panel-top .pt-live::before{
+  content:'';width:6px;height:6px;background:var(--g);border-radius:50%;
+  animation:blink 1.8s infinite;
+}
+.live-tasks{display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.5rem}
+.lt-item{
+  display:flex;align-items:center;gap:.9rem;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--r);padding:1rem 1.15rem;
+  transition:transform .2s,background .2s;
+  animation:slideRight .5s ease both;
+}
+.lt-item:hover{transform:translateX(4px);background:rgba(255,255,255,.08)}
+.lt-item:nth-child(1){animation-delay:.1s}
+.lt-item:nth-child(2){animation-delay:.22s}
+.lt-item:nth-child(3){animation-delay:.34s}
+.lt-item:nth-child(4){animation-delay:.46s}
+@keyframes slideRight{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+.lt-ico{
+  width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0;
+}
+.ico-g{background:rgba(34,197,94,.18)}
+.ico-a{background:rgba(245,158,11,.18)}
+.ico-b{background:rgba(99,102,241,.18)}
+.ico-p{background:rgba(236,72,153,.18)}
+.lt-body{flex:1}
+.lt-title{color:#fff;font-weight:600;font-size:.88rem}
+.lt-pay{color:var(--g);font-weight:700;font-size:.82rem;margin-top:.1rem}
+.lt-tag{
+  background:rgba(34,197,94,.14);color:var(--g);
+  border-radius:100px;padding:.18rem .65rem;font-size:.7rem;font-weight:700;
+  white-space:nowrap;flex-shrink:0;
+}
+.lt-tag.hot{background:rgba(245,158,11,.14);color:var(--amber)}
+.panel-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);
+  border-radius:var(--r);padding:1rem 1.25rem;
+}
+.pf-text{font-size:.82rem;color:rgba(255,255,255,.6)}
+.pf-text strong{color:#fff}
+.pf-badge{
+  background:var(--g);color:var(--navy);
+  border-radius:100px;padding:.3rem .9rem;
+  font-size:.78rem;font-weight:800;
+}
+.float-chip{
+  position:absolute;top:-1rem;right:-1rem;
+  background:var(--amber);color:var(--navy);
+  border-radius:100px;padding:.5rem 1.1rem;
+  font-family:var(--font-d);font-weight:800;font-size:.82rem;
+  box-shadow:0 8px 24px rgba(245,158,11,.4);
+  animation:floatY 3s ease-in-out infinite;
+  white-space:nowrap;
+}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* ═══════════════════════════════════════════════════
+   TICKER STRIP
+═══════════════════════════════════════════════════ */
+.ticker-strip{
+  background:var(--g);overflow:hidden;padding:.7rem 0;
+  position:relative;
+}
+.ticker-track{
+  display:flex;gap:0;white-space:nowrap;
+  animation:tickerRoll 28s linear infinite;
+}
+@keyframes tickerRoll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-item{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:0 2.5rem;
+  font-family:var(--font-d);font-weight:700;font-size:.85rem;color:var(--navy);
+}
+.ticker-item .ti-dot{width:5px;height:5px;background:var(--navy);border-radius:50%;opacity:.45}
+
+/* ═══════════════════════════════════════════════════
+   HOW IT WORKS
+═══════════════════════════════════════════════════ */
+#how{background:var(--white)}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.how-card{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:var(--r-lg);padding:2.25rem 2rem;
+  transition:all .3s ease;position:relative;overflow:hidden;
+}
+.how-card::before{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--g),var(--g-light));
+  transform:scaleX(0);transform-origin:left;transition:transform .35s ease;
+}
+.how-card:hover{box-shadow:var(--sh-lg);transform:translateY(-5px);border-color:rgba(34,197,94,.3)}
+.how-card:hover::before{transform:scaleX(1)}
+.how-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:52px;height:52px;border-radius:50%;
+  background:var(--navy);color:var(--g);
+  font-family:var(--font-d);font-weight:800;font-size:1.1rem;
+  border:2.5px solid var(--g);margin-bottom:1.5rem;
+}
+.how-icon{font-size:2.25rem;margin-bottom:1rem}
+.how-card h3{margin-bottom:.6rem;color:var(--navy)}
+.how-card p{font-size:.92rem;color:var(--slate)}
+.how-conn{
+  display:flex;align-items:center;padding-top:1.5rem;margin-top:1.5rem;
+  border-top:1px solid var(--border);
+}
+.conn-arrow{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--g-dim);border:1px solid rgba(34,197,94,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;color:var(--g);
+}
+
+/* ═══════════════════════════════════════════════════
+   FOR STUDENTS
+═══════════════════════════════════════════════════ */
+#students{background:var(--bg)}
+.split-layout{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4.5rem;align-items:center;
+}
+.split-visual-students{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.sv-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--r);padding:1.6rem;box-shadow:var(--sh);
+  transition:transform .3s,box-shadow .3s;
+}
+.sv-card:hover{transform:translateY(-4px);box-shadow:var(--sh-lg)}
+.sv-card .svc-icon{font-size:1.9rem;margin-bottom:.75rem}
+.sv-card .svc-title{font-family:var(--font-d);font-weight:700;font-size:.95rem;color:var(--navy);margin-bottom:.3rem}
+.sv-card .svc-val{color:var(--g-dark);font-weight:700;font-size:.88rem}
+.sv-card.featured{
+  grid-column:span 2;background:var(--navy);
+  border-color:transparent;display:flex;gap:1.25rem;align-items:center;
+}
+.sv-card.featured .svc-title{color:#fff}
+.sv-card.featured .svc-val{color:var(--g);font-size:1rem}
+.sv-card.featured .svc-sub{color:rgba(255,255,255,.45);font-size:.82rem;margin-top:.2rem}
+.perks{display:flex;flex-direction:column;gap:1rem;margin-bottom:2.5rem}
+.perk{display:flex;align-items:flex-start;gap:.9rem}
+.perk-ico{
+  width:38px;height:38px;border-radius:10px;flex-shrink:0;
+  background:var(--g-dim);border:1px solid rgba(34,197,94,.2);
+  display:flex;align-items:center;justify-content:center;font-size:1rem;
+}
+.perk-body strong{display:block;color:var(--navy);font-weight:600;margin-bottom:.15rem;font-size:.95rem}
+.perk-body span{color:var(--slate);font-size:.88rem}
+
+/* ═══════════════════════════════════════════════════
+   FOR BUSINESSES
+═══════════════════════════════════════════════════ */
+#businesses{background:var(--navy);position:relative;overflow:hidden}
+#businesses::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(34,197,94,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(34,197,94,.04) 1px,transparent 1px);
+  background-size:52px 52px;
+}
+.biz-layout{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:center;position:relative;z-index:1}
+.biz-content{color:#fff}
+.biz-content .section-eyebrow{background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.2)}
+.biz-content h2{color:#fff;margin-bottom:1rem}
+.biz-content>.lead{color:rgba(255,255,255,.6);font-size:1.08rem;margin-bottom:2.5rem}
+.biz-perks{display:flex;flex-direction:column;gap:1.1rem;margin-bottom:2.5rem}
+.biz-perk{
+  display:flex;align-items:flex-start;gap:1rem;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--r);padding:1.2rem;
+  transition:background .25s,border-color .25s;
+}
+.biz-perk:hover{background:rgba(255,255,255,.08);border-color:rgba(34,197,94,.25)}
+.bp-ico{
+  width:42px;height:42px;border-radius:10px;flex-shrink:0;
+  background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.2);
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+}
+.bp-body strong{display:block;color:#fff;font-weight:600;margin-bottom:.15rem}
+.bp-body span{color:rgba(255,255,255,.5);font-size:.88rem}
+.biz-metrics{display:flex;flex-direction:column;gap:1rem}
+.bm-main{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:var(--r-lg);padding:2rem;backdrop-filter:blur(12px);
+}
+.bm-main .bm-label{font-size:.75rem;color:rgba(255,255,255,.42);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.75rem}
+.bm-main .bm-val{font-family:var(--font-d);font-weight:800;font-size:3.2rem;color:var(--g);line-height:1}
+.bm-main .bm-sub{color:rgba(255,255,255,.42);font-size:.85rem;margin-top:.4rem}
+.bm-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.bm-card{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:var(--r);padding:1.4rem;backdrop-filter:blur(12px);
+}
+.bm-card .bmc-label{font-size:.75rem;color:rgba(255,255,255,.4);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.5rem}
+.bm-card .bmc-val{font-family:var(--font-d);font-weight:800;font-size:1.9rem;color:#fff;line-height:1}
+.bm-card .bmc-sub{color:rgba(255,255,255,.4);font-size:.78rem;margin-top:.25rem}
+.bm-card.amber .bmc-val{color:var(--amber)}
+.tags-cloud{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--r);padding:1.25rem;
+}
+.tc-label{font-size:.73rem;color:rgba(255,255,255,.38);letter-spacing:.07em;text-transform:uppercase;margin-bottom:.85rem}
+.tags-wrap{display:flex;gap:.5rem;flex-wrap:wrap}
+.tag-chip{border-radius:100px;padding:.28rem .85rem;font-size:.78rem;font-weight:600}
+.chip-g{background:rgba(34,197,94,.15);color:var(--g-light)}
+.chip-a{background:rgba(245,158,11,.15);color:var(--amber)}
+.chip-b{background:rgba(99,102,241,.15);color:#A5B4FC}
+.chip-r{background:rgba(236,72,153,.15);color:#F9A8D4}
+.chip-w{background:rgba(255,255,255,.08);color:rgba(255,255,255,.5)}
+
+/* ═══════════════════════════════════════════════════
+   TASK EXAMPLES
+═══════════════════════════════════════════════════ */
+#tasks{background:var(--white)}
+.tasks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.task-card{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:var(--r-lg);padding:1.9rem;
+  transition:all .3s ease;cursor:default;
+}
+.task-card:hover{
+  background:var(--navy);border-color:var(--navy);
+  transform:translateY(-5px);box-shadow:var(--sh-lg);
+}
+.task-card:hover .tc-title{color:#fff}
+.task-card:hover .tc-desc{color:rgba(255,255,255,.5)}
+.task-card:hover .tc-footer .tc-pay{color:var(--g-light)}
+.task-card:hover .tc-chip{background:rgba(34,197,94,.18);color:var(--g)}
+.tc-em{font-size:2.1rem;margin-bottom:1.1rem}
+.tc-title{font-family:var(--font-d);font-weight:700;font-size:1.05rem;color:var(--navy);margin-bottom:.5rem;transition:color .3s}
+.tc-desc{font-size:.88rem;color:var(--slate);margin-bottom:1.25rem;line-height:1.6;transition:color .3s}
+.tc-footer{display:flex;align-items:center;justify-content:space-between}
+.tc-chip{background:var(--bg-2);color:var(--slate);border-radius:100px;padding:.25rem .75rem;font-size:.72rem;font-weight:700;transition:all .3s}
+.tc-pay{color:var(--g-dark);font-weight:700;font-size:.88rem;transition:color .3s}
+
+/* ═══════════════════════════════════════════════════
+   ROADMAP
+═══════════════════════════════════════════════════ */
+#roadmap{background:var(--bg);overflow:hidden}
+.roadmap-track{
+  display:flex;gap:0;position:relative;
+  padding-bottom:3rem;
+}
+.roadmap-track::before{
+  content:'';position:absolute;
+  top:2.75rem;left:calc(4.5% + 28px);right:calc(4.5% + 28px);
+  height:2px;
+  background:linear-gradient(90deg,var(--g) 0%,var(--amber) 50%,var(--g) 100%);
+  background-size:200% auto;
+  animation:gradientShift 4s linear infinite;
+}
+@keyframes gradientShift{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+.rm-step{
+  flex:1;display:flex;flex-direction:column;align-items:center;
+  text-align:center;padding:0 .75rem;
+}
+.rm-node{
+  width:58px;height:58px;border-radius:50%;
+  background:var(--navy);border:3px solid var(--g);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-d);font-weight:800;font-size:1.05rem;color:var(--g);
+  position:relative;z-index:1;margin-bottom:1.5rem;flex-shrink:0;
+  box-shadow:0 0 0 6px rgba(34,197,94,.12);
+  transition:all .3s;
+}
+.rm-step:hover .rm-node{background:var(--g);color:var(--navy);box-shadow:0 0 0 8px rgba(34,197,94,.2),var(--sh-g)}
+.rm-icon{font-size:1.6rem;margin-bottom:.85rem}
+.rm-title{font-family:var(--font-d);font-weight:700;font-size:.98rem;color:var(--navy);margin-bottom:.4rem}
+.rm-desc{font-size:.82rem;color:var(--slate);line-height:1.55}
+
+/* ═══════════════════════════════════════════════════
+   WHY HUSTL (TRUST)
+═══════════════════════════════════════════════════ */
+#why{background:var(--white)}
+.why-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.why-card{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:var(--r-lg);padding:1.75rem;
+  transition:all .3s;
+}
+.why-card:hover{transform:translateY(-3px);box-shadow:var(--sh-lg);border-color:rgba(34,197,94,.3)}
+.wc-ico{font-size:1.75rem;margin-bottom:.8rem}
+.wc-title{font-family:var(--font-d);font-weight:700;margin-bottom:.35rem;font-size:1rem}
+.wc-desc{font-size:.85rem;color:var(--slate);line-height:1.6}
+.why-big{
+  background:var(--navy);border-radius:var(--r-xl);
+  padding:3rem;text-align:center;position:relative;overflow:hidden;
+}
+.why-big::before{
+  content:'';position:absolute;top:-30%;right:-20%;
+  width:75%;height:75%;
+  background:radial-gradient(circle,rgba(34,197,94,.22) 0%,transparent 65%);
+}
+.why-big::after{
+  content:'';position:absolute;bottom:-20%;left:-10%;
+  width:55%;height:55%;
+  background:radial-gradient(circle,rgba(245,158,11,.12) 0%,transparent 65%);
+}
+.wb-inner{position:relative;z-index:1}
+.wb-tag{font-size:.73rem;color:rgba(255,255,255,.42);text-transform:uppercase;letter-spacing:.1em;margin-bottom:1rem}
+.wb-num{font-family:var(--font-d);font-weight:800;font-size:5.5rem;color:var(--g);line-height:1}
+.wb-unit{font-family:var(--font-d);font-weight:700;font-size:1.2rem;color:#fff;margin-bottom:.75rem}
+.wb-desc{color:rgba(255,255,255,.45);font-size:.9rem;max-width:210px;margin:0 auto 2rem}
+.wb-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.wbs-box{background:rgba(255,255,255,.06);border-radius:var(--r);padding:1.2rem}
+.wbs-val{font-family:var(--font-d);font-weight:800;font-size:1.75rem;color:var(--amber)}
+.wbs-lbl{color:rgba(255,255,255,.4);font-size:.75rem;margin-top:.2rem}
+
+/* ═══════════════════════════════════════════════════
+   FAQ
+═══════════════════════════════════════════════════ */
+#faq{background:var(--bg)}
+.faq-layout{display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:start}
+.faq-left h2{margin-bottom:1rem}
+.faq-left p{color:var(--slate);margin-bottom:2rem}
+.faq-list{display:flex;flex-direction:column;gap:.65rem}
+.faq-item{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--r);overflow:hidden;
+  transition:border-color .25s;
+}
+.faq-item.open{border-color:rgba(34,197,94,.35)}
+.faq-q{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:1.35rem 1.5rem;cursor:none;
+  font-family:var(--font-d);font-weight:600;font-size:.95rem;color:var(--navy);
+  transition:background .2s;user-select:none;
+}
+.faq-q:hover{background:var(--bg)}
+.faq-icon{
+  width:28px;height:28px;border-radius:50%;flex-shrink:0;
+  background:var(--g-dim);border:1px solid rgba(34,197,94,.2);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--g);font-size:.9rem;font-weight:700;
+  transition:transform .3s,background .25s;
+}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:var(--g);color:var(--navy);border-color:var(--g)}
+.faq-a{
+  max-height:0;overflow:hidden;
+  transition:max-height .4s cubic-bezier(0,.98,.3,1),padding .3s ease;
+}
+.faq-item.open .faq-a{max-height:300px}
+.faq-a-inner{padding:0 1.5rem 1.4rem;font-size:.9rem;color:var(--slate);line-height:1.72}
+
+/* ═══════════════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════════════ */
+#contact{background:var(--navy);position:relative;overflow:hidden}
+#contact::before{
+  content:'';position:absolute;
+  bottom:-30%;left:50%;transform:translateX(-50%);
+  width:90%;height:70%;
+  background:radial-gradient(ellipse,rgba(34,197,94,.14) 0%,transparent 65%);
+}
+.contact-center{
+  position:relative;z-index:1;
+  max-width:740px;margin:0 auto;text-align:center;
+}
+.contact-center h2{color:#fff;margin-bottom:1rem}
+.contact-center .lead{color:rgba(255,255,255,.55);font-size:1.08rem;margin-bottom:2.5rem}
+.contact-card{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);
+  border-radius:var(--r-xl);padding:3rem 2.5rem;
+  backdrop-filter:blur(16px);margin-bottom:1.75rem;
+}
+.contact-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
+.contact-info{
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+  color:rgba(255,255,255,.4);font-size:.87rem;
+}
+.contact-info a{color:rgba(255,255,255,.6);transition:color .2s}
+.contact-info a:hover{color:var(--g)}
+.wa-icon{
+  display:inline-flex;width:22px;height:22px;flex-shrink:0;
+  align-items:center;justify-content:center;
+}
+
+/* ═══════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════ */
+footer{background:#070C14;color:rgba(255,255,255,.35);padding:2.25rem 0}
+.footer-inner{
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;
+}
+.f-logo{font-family:var(--font-d);font-weight:800;font-size:1.5rem;color:#fff;letter-spacing:-.04em}
+.f-logo em{color:var(--g);font-style:normal}
+.f-tagline{font-size:.8rem;color:rgba(255,255,255,.3);margin-top:.15rem;letter-spacing:.01em}
+.f-links{display:flex;gap:1.75rem;flex-wrap:wrap}
+.f-links a{font-size:.83rem;color:rgba(255,255,255,.38);transition:color .2s}
+.f-links a:hover{color:var(--g)}
+.f-copy{font-size:.78rem;color:rgba(255,255,255,.2)}
+
+/* ═══════════════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════════════ */
+.sr{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.sr.up{opacity:1;transform:translateY(0)}
+.sr-d1{transition-delay:.08s}.sr-d2{transition-delay:.17s}
+.sr-d3{transition-delay:.26s}.sr-d4{transition-delay:.35s}
+.sr-d5{transition-delay:.44s}.sr-d6{transition-delay:.53s}
+.sr-left{opacity:0;transform:translateX(-28px);transition:opacity .7s ease,transform .7s ease}
+.sr-left.up{opacity:1;transform:translateX(0)}
+.sr-right{opacity:0;transform:translateX(28px);transition:opacity .7s ease,transform .7s ease}
+.sr-right.up{opacity:1;transform:translateX(0)}
+
+/* ═══════════════════════════════════════════════════
+   SCROLL TO TOP
+═══════════════════════════════════════════════════ */
+#top-btn{
+  position:fixed;bottom:1.75rem;right:1.75rem;z-index:50;
+  width:46px;height:46px;border-radius:50%;
+  background:var(--g);color:var(--navy);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;font-weight:700;
+  box-shadow:0 4px 20px rgba(34,197,94,.4);
+  opacity:0;pointer-events:none;
+  transition:opacity .3s,transform .3s;
+  cursor:none;
+}
+#top-btn.show{opacity:1;pointer-events:all}
+#top-btn:hover{transform:scale(1.12) translateY(-2px)}
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════ */
+@media(max-width:1024px){
+  .hero-layout{grid-template-columns:1fr;max-width:640px;margin:0 auto}
+  .hero-panel{display:none}
+  .how-grid{grid-template-columns:1fr}
+  .tasks-grid{grid-template-columns:1fr 1fr}
+  .roadmap-track{flex-wrap:wrap;gap:2rem}
+  .roadmap-track::before{display:none}
+  .rm-step{width:calc(33.33% - 1.5rem);min-width:140px}
+  .faq-layout{grid-template-columns:1fr}
+  .faq-left{max-width:500px}
+}
+@media(max-width:768px){
+  section{padding:5rem 0}
+  .nav-links,.nav-actions{display:none}
+  .hamburger{display:flex}
+  .split-layout,.biz-layout,.why-layout{grid-template-columns:1fr;gap:2.5rem}
+  .split-visual-students{display:none}
+  .tasks-grid{grid-template-columns:1fr}
+  .why-big{order:-1}
+  .footer-inner{flex-direction:column;align-items:flex-start}
+  .rm-step{width:calc(50% - 1rem)}
+  .how-grid{grid-template-columns:1fr}
+  .hero-sub{font-size:1rem}
+}
+@media(max-width:480px){
+  h1{font-size:2.15rem}
+  h2{font-size:1.75rem}
+  .btn-lg{padding:.9rem 1.75rem;font-size:.9rem}
+  .hero-btns{flex-direction:column;align-items:flex-start}
+  .contact-btns{flex-direction:column;align-items:center}
+  .rm-step{width:100%}
+  .why-grid{grid-template-columns:1fr}
+  .wb-stats{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- ═══════════ NAVBAR ═══════════ -->
+<nav id="nav">
+  <div class="wrap nav-wrap">
+    <a href="#hero" class="nav-logo">Hust<em>l</em></a>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#how">How it Works</a></li>
+      <li><a href="#students">For Students</a></li>
+      <li><a href="#businesses">For Businesses</a></li>
+      <li><a href="#tasks">Tasks</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="#students" class="btn btn-ghost" style="padding:.6rem 1.3rem;font-size:.82rem">Join as Student</a>
+      <a href="#businesses" class="btn btn-green" style="padding:.6rem 1.3rem;font-size:.82rem">Post a Task</a>
+    </div>
+    <div class="hamburger" id="ham" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mob-menu">
+  <a href="#hero" class="mob-link">Home</a>
+  <a href="#how" class="mob-link">How it Works</a>
+  <a href="#students" class="mob-link">For Students</a>
+  <a href="#businesses" class="mob-link">For Businesses</a>
+  <a href="#tasks" class="mob-link">Tasks</a>
+  <a href="#roadmap" class="mob-link">Roadmap</a>
+  <a href="#faq" class="mob-link">FAQ</a>
+  <a href="#contact" class="mob-link">Contact</a>
+  <div class="mob-ctas">
+    <a href="#students" class="btn btn-green btn-lg">Start Earning</a>
+    <a href="#businesses" class="btn btn-ghost btn-lg">Post a Task</a>
+  </div>
+</div>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section id="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-orb-1"></div>
+  <div class="hero-orb-2"></div>
+  <div class="hero-noise"></div>
+  <div class="wrap">
+    <div class="hero-layout">
+
+      <div class="hero-left">
+        <div class="hero-kicker">
+          <span class="live-dot"></span>
+          Now Live in Nigeria 🇳🇬
+        </div>
+        <h1>Turn Simple Tasks<br>Into <span class="accent">Real Income</span></h1>
+        <p class="hero-sub">
+          Hustl connects students to businesses for real digital work and fast earnings. Complete tasks from your phone. Get paid.
+        </p>
+        <div class="hero-btns">
+          <a href="#students" class="btn btn-green btn-lg">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            Start Earning
+          </a>
+          <a href="#businesses" class="btn btn-ghost btn-lg">
+            Post a Task →
+          </a>
+        </div>
+        <div class="hero-proof">
+          <div class="proof-stat">
+            <div class="num">500+</div>
+            <div class="lbl">Tasks Monthly</div>
+          </div>
+          <div class="proof-div"></div>
+          <div class="proof-stat">
+            <div class="num">₦0</div>
+            <div class="lbl">Cost to Join</div>
+          </div>
+          <div class="proof-div"></div>
+          <div class="proof-stat">
+            <div class="num">100%</div>
+            <div class="lbl">Phone-Based</div>
+          </div>
+          <div class="proof-div"></div>
+          <div class="proof-stat">
+            <div class="num">2hr</div>
+            <div class="lbl">Avg. Payout</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <div class="float-chip">⚡ 14 new tasks today</div>
+        <div class="panel-top">
+          <span class="pt-label">Live Task Feed</span>
+          <span class="pt-live">Active now</span>
+        </div>
+        <div class="live-tasks">
+          <div class="lt-item">
+            <div class="lt-ico ico-g">📣</div>
+            <div class="lt-body">
+              <div class="lt-title">Share Promo Post on Instagram</div>
+              <div class="lt-pay">Earn ₦500 – ₦1,200</div>
+            </div>
+            <span class="lt-tag">New</span>
+          </div>
+          <div class="lt-item">
+            <div class="lt-ico ico-a">✍️</div>
+            <div class="lt-body">
+              <div class="lt-title">Write 5 Product Captions</div>
+              <div class="lt-pay">Earn ₦800 – ₦2,000</div>
+            </div>
+            <span class="lt-tag hot">Hot</span>
+          </div>
+          <div class="lt-item">
+            <div class="lt-ico ico-b">👍</div>
+            <div class="lt-body">
+              <div class="lt-title">Engage on 3 Business Posts</div>
+              <div class="lt-pay">Earn ₦300 – ₦700</div>
+            </div>
+            <span class="lt-tag">Open</span>
+          </div>
+          <div class="lt-item">
+            <div class="lt-ico ico-p">📋</div>
+            <div class="lt-body">
+              <div class="lt-title">Collect 20 Business Leads</div>
+              <div class="lt-pay">Earn ₦1,500 – ₦3,500</div>
+            </div>
+            <span class="lt-tag">Open</span>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <div class="pf-text">Students earned <strong>₦2.4M+</strong> so far</div>
+          <div class="pf-badge">Join Free</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TICKER ═══════════ -->
+<div class="ticker-strip" aria-hidden="true">
+  <div class="ticker-track" id="ticker">
+    <span class="ticker-item">📣 Share Promo Posts <span class="ti-dot"></span></span>
+    <span class="ticker-item">✍️ Write Captions <span class="ti-dot"></span></span>
+    <span class="ticker-item">👍 Social Media Engagement <span class="ti-dot"></span></span>
+    <span class="ticker-item">📋 Lead Collection <span class="ti-dot"></span></span>
+    <span class="ticker-item">🌐 Online Promotion <span class="ti-dot"></span></span>
+    <span class="ticker-item">⭐ Write Reviews <span class="ti-dot"></span></span>
+    <span class="ticker-item">📸 Content Reposting <span class="ti-dot"></span></span>
+    <span class="ticker-item">💬 Community Outreach <span class="ti-dot"></span></span>
+    <span class="ticker-item">📣 Share Promo Posts <span class="ti-dot"></span></span>
+    <span class="ticker-item">✍️ Write Captions <span class="ti-dot"></span></span>
+    <span class="ticker-item">👍 Social Media Engagement <span class="ti-dot"></span></span>
+    <span class="ticker-item">📋 Lead Collection <span class="ti-dot"></span></span>
+    <span class="ticker-item">🌐 Online Promotion <span class="ti-dot"></span></span>
+    <span class="ticker-item">⭐ Write Reviews <span class="ti-dot"></span></span>
+    <span class="ticker-item">📸 Content Reposting <span class="ti-dot"></span></span>
+    <span class="ticker-item">💬 Community Outreach <span class="ti-dot"></span></span>
+  </div>
+</div>
+
+<!-- ═══════════ HOW IT WORKS ═══════════ -->
+<section id="how">
+  <div class="wrap">
+    <div class="section-eyebrow sr"><span class="dot"></span>Simple Process</div>
+    <h2 class="section-head sr">How Hustl Works</h2>
+    <p class="section-sub sr">Three clean steps between a business needing visibility and a student ready to earn.</p>
+    <div class="how-grid">
+      <div class="how-card sr sr-d1">
+        <div class="how-num">01</div>
+        <div class="how-icon">🏢</div>
+        <h3>Business Posts a Task</h3>
+        <p>Any business can submit digital marketing tasks — promotions, captions, engagement, or research — with a clear budget and deadline.</p>
+        <div class="how-conn"><div class="conn-arrow">→</div></div>
+      </div>
+      <div class="how-card sr sr-d2">
+        <div class="how-num">02</div>
+        <div class="how-icon">🎓</div>
+        <h3>Student Picks &amp; Completes</h3>
+        <p>Verified students browse tasks, pick ones that match their time and skills, and complete them from their phone — no office needed.</p>
+        <div class="how-conn"><div class="conn-arrow">→</div></div>
+      </div>
+      <div class="how-card sr sr-d3">
+        <div class="how-num">03</div>
+        <div class="how-icon">⚡</div>
+        <h3>Hustl Verifies &amp; Pays</h3>
+        <p>We verify task completion, ensure quality standards are met, and release payment to students fast. No chasing invoices. No friction.</p>
+        <div class="how-conn" style="justify-content:flex-end"><div class="conn-arrow" style="background:var(--g-dim)">✓</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOR STUDENTS ═══════════ -->
+<section id="students">
+  <div class="wrap">
+    <div class="split-layout">
+      <div class="split-visual-students">
+        <div class="sv-card sr sr-d1">
+          <div class="svc-icon">📱</div>
+          <div class="svc-title">Work From Anywhere</div>
+          <div class="svc-val">Phone or Laptop</div>
+        </div>
+        <div class="sv-card sr sr-d2">
+          <div class="svc-icon">⚡</div>
+          <div class="svc-title">Quick Tasks</div>
+          <div class="svc-val">15 – 90 mins each</div>
+        </div>
+        <div class="sv-card sr sr-d3">
+          <div class="svc-icon">🏆</div>
+          <div class="svc-title">Zero Experience</div>
+          <div class="svc-val">Required to start</div>
+        </div>
+        <div class="sv-card sr sr-d4">
+          <div class="svc-icon">💸</div>
+          <div class="svc-title">Daily Earnings</div>
+          <div class="svc-val">₦500 – ₦5,000/day</div>
+        </div>
+        <div class="sv-card featured sr sr-d5">
+          <div class="svc-icon" style="font-size:2.5rem">🎓</div>
+          <div>
+            <div class="svc-title">Built for Nigerian Students</div>
+            <div class="svc-val">Up to ₦50,000/month possible</div>
+            <div class="svc-sub">Join hundreds already earning on Hustl</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sr-right sr">
+        <div class="section-eyebrow"><span class="dot"></span>For Students</div>
+        <h2 class="section-head">Earn Real Money<br>From Your <span style="color:var(--g)">Phone</span></h2>
+        <p class="section-sub" style="margin-bottom:2rem">Complete simple digital tasks for Nigerian businesses. No commute. No boss. No experience needed — just your phone and a bit of time.</p>
+        <div class="perks">
+          <div class="perk">
+            <div class="perk-ico">💰</div>
+            <div class="perk-body">
+              <strong>Get paid per task you complete</strong>
+              <span>Every completed and verified task puts money directly in your pocket. Clear rates, no surprises.</span>
+            </div>
+          </div>
+          <div class="perk">
+            <div class="perk-ico">🕐</div>
+            <div class="perk-body">
+              <strong>Work around your lecture schedule</strong>
+              <span>Tasks are available 24/7. Pick up work when you're free. Stop when you're busy. Total flexibility.</span>
+            </div>
+          </div>
+          <div class="perk">
+            <div class="perk-ico">📈</div>
+            <div class="perk-body">
+              <strong>Build real digital marketing skills</strong>
+              <span>Every task you complete teaches you something valuable. Earn while you learn social media and marketing.</span>
+            </div>
+          </div>
+        </div>
+        <a href="https://wa.me/2349122478160?text=Hi+Hustl%2C+I%27m+a+student+and+I+want+to+start+earning+from+tasks"
+           target="_blank" rel="noopener" class="btn btn-green btn-lg">
+          Join as Student →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOR BUSINESSES ═══════════ -->
+<section id="businesses">
+  <div class="wrap">
+    <div class="biz-layout">
+      <div class="biz-content sr-left sr">
+        <div class="section-eyebrow"><span class="dot"></span>For Businesses</div>
+        <h2 style="color:#fff;margin-bottom:1rem">Get Consistent<br><span style="color:var(--g)">Online Visibility</span></h2>
+        <p class="lead">Stop struggling with social media presence. Hustl gives your brand affordable, recurring digital promotion powered by a motivated student workforce.</p>
+        <div class="biz-perks">
+          <div class="biz-perk">
+            <div class="bp-ico">💰</div>
+            <div class="bp-body">
+              <strong>Affordable Digital Promotion</strong>
+              <span>Get tasks done at a fraction of agency rates. Real results, student-friendly pricing.</span>
+            </div>
+          </div>
+          <div class="biz-perk">
+            <div class="bp-ico">🔄</div>
+            <div class="bp-body">
+              <strong>Recurring Task Support</strong>
+              <span>Set up daily or weekly recurring tasks for consistent brand visibility — automatically fulfilled.</span>
+            </div>
+          </div>
+          <div class="biz-perk">
+            <div class="bp-ico">✅</div>
+            <div class="bp-body">
+              <strong>Verified Student Workforce</strong>
+              <span>Every student is verified and rated. You only pay for completed, quality work.</span>
+            </div>
+          </div>
+          <div class="biz-perk">
+            <div class="bp-ico">📊</div>
+            <div class="bp-body">
+              <strong>Hustl Manages Everything</strong>
+              <span>We handle coordination, verification, and payments. You just post tasks and get results.</span>
+            </div>
+          </div>
+        </div>
+        <a href="https://wa.me/2349122478160?text=Hi+Hustl%2C+I%27d+like+to+post+tasks+for+my+business"
+           target="_blank" rel="noopener" class="btn btn-green btn-lg">
+          Start Posting Tasks →
+        </a>
+      </div>
+
+      <div class="biz-metrics sr-right sr">
+        <div class="bm-main">
+          <div class="bm-label">Average monthly visibility boost</div>
+          <div class="bm-val">4.2×</div>
+          <div class="bm-sub">More online engagement per Naira spent vs traditional marketing</div>
+        </div>
+        <div class="bm-row">
+          <div class="bm-card amber">
+            <div class="bmc-label">Daily completions</div>
+            <div class="bmc-val">50+</div>
+            <div class="bmc-sub">Tasks done per day</div>
+          </div>
+          <div class="bm-card">
+            <div class="bmc-label">Turnaround time</div>
+            <div class="bmc-val">2hr</div>
+            <div class="bmc-sub">Average completion</div>
+          </div>
+        </div>
+        <div class="tags-cloud">
+          <div class="tc-label">Industries Served</div>
+          <div class="tags-wrap">
+            <span class="tag-chip chip-g">Fashion</span>
+            <span class="tag-chip chip-a">Food &amp; Drinks</span>
+            <span class="tag-chip chip-b">Real Estate</span>
+            <span class="tag-chip chip-r">Beauty</span>
+            <span class="tag-chip chip-g">E-commerce</span>
+            <span class="tag-chip chip-a">Events</span>
+            <span class="tag-chip chip-w">+ More</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TASK EXAMPLES ═══════════ -->
+<section id="tasks">
+  <div class="wrap">
+    <div style="text-align:center">
+      <div class="section-eyebrow sr" style="justify-content:center"><span class="dot"></span>Available Tasks</div>
+      <h2 class="section-head sr">What You'll Be Doing</h2>
+      <p class="section-sub sr" style="margin:0 auto 3.5rem">Simple, digital, and completable from your phone. Here's a snapshot of the tasks available on Hustl right now.</p>
+    </div>
+    <div class="tasks-grid">
+      <div class="task-card sr sr-d1">
+        <div class="tc-em">📣</div>
+        <div class="tc-title">Share Promotional Posts</div>
+        <div class="tc-desc">Share a business's promotional content on your social media accounts to expand their reach to new audiences.</div>
+        <div class="tc-footer">
+          <span class="tc-chip">Social Media</span>
+          <span class="tc-pay">₦300 – ₦1,200</span>
+        </div>
+      </div>
+      <div class="task-card sr sr-d2">
+        <div class="tc-em">👍</div>
+        <div class="tc-title">Social Media Engagement</div>
+        <div class="tc-desc">Like, comment, and genuinely engage with a business's posts to boost their algorithmic visibility and social proof.</div>
+        <div class="tc-footer">
+          <span class="tc-chip">Engagement</span>
+          <span class="tc-pay">₦200 – ₦800</span>
+        </div>
+      </div>
+      <div class="task-card sr sr-d3">
+        <div class="tc-em">📋</div>
+        <div class="tc-title">Lead Collection</div>
+        <div class="tc-desc">Research and gather qualified contact or business information for a company's outreach and sales pipeline.</div>
+        <div class="tc-footer">
+          <span class="tc-chip">Research</span>
+          <span class="tc-pay">₦1,000 – ₦3,500</span>
+        </div>
+      </div>
+      <div class="task-card sr sr-d4">
+        <div class="tc-em">✍️</div>
+        <div class="tc-title">Write Captions</div>
+        <div class="tc-desc">Create engaging, on-brand captions for Instagram, Facebook, and Twitter posts that drive real interaction.</div>
+        <div class="tc-footer">
+          <span class="tc-chip">Content</span>
+          <span class="tc-pay">₦500 – ₦1,000</span>
+        </div>
+      </div>
+      <div class="task-card sr sr-d5">
+        <div class="tc-em">🌐</div>
+        <div class="tc-title">Content Reposting</div>
+        <div class="tc-desc">Repost and circulate business content in relevant Facebook groups, WhatsApp communities, and digital forums.</div>
+        <div class="tc-footer">
+          <span class="tc-chip">Promotion</span>
+          <span class="tc-pay">₦400 – ₦1,500</span>
+        </div>
+      </div>
+      <div class="task-card sr sr-d6">
+        <div class="tc-em">⭐</div>
+        <div class="tc-title">Write Business Reviews</div>
+        <div class="tc-desc">Write detailed, authentic reviews for businesses on Google Maps and relevant platforms to build their online reputation.</div>
+        <div class="tc-footer">
+          <span class="tc-chip">Reviews</span>
+          <span class="tc-pay">₦300 – ₦900</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ROADMAP ═══════════ -->
+<section id="roadmap">
+  <div class="wrap">
+    <div style="text-align:center">
+      <div class="section-eyebrow sr" style="justify-content:center"><span class="dot"></span>Student Journey</div>
+      <h2 class="section-head sr">From Sign-Up to Payout</h2>
+      <p class="section-sub sr" style="margin:0 auto 4rem">Here's exactly what the student experience looks like on Hustl — step by step.</p>
+    </div>
+    <div class="roadmap-track">
+      <div class="rm-step sr sr-d1">
+        <div class="rm-node">01</div>
+        <div class="rm-icon">🚀</div>
+        <div class="rm-title">Join Hustl</div>
+        <div class="rm-desc">Sign up for free via WhatsApp. No complicated forms, no upfront cost.</div>
+      </div>
+      <div class="rm-step sr sr-d2">
+        <div class="rm-node">02</div>
+        <div class="rm-icon">🔍</div>
+        <div class="rm-title">Get Matched</div>
+        <div class="rm-desc">Browse tasks matched to your skills, schedule, and earnings goals.</div>
+      </div>
+      <div class="rm-step sr sr-d3">
+        <div class="rm-node">03</div>
+        <div class="rm-icon">✅</div>
+        <div class="rm-title">Complete Tasks</div>
+        <div class="rm-desc">Do the work right from your phone. Simple, clear instructions every time.</div>
+      </div>
+      <div class="rm-step sr sr-d4">
+        <div class="rm-node">04</div>
+        <div class="rm-icon">🛡️</div>
+        <div class="rm-title">Hustl Verifies</div>
+        <div class="rm-desc">We review your submission for quality and confirm it with the business.</div>
+      </div>
+      <div class="rm-step sr sr-d5">
+        <div class="rm-node">05</div>
+        <div class="rm-icon">💸</div>
+        <div class="rm-title">Get Paid</div>
+        <div class="rm-desc">Payment is released fast — directly to you. No delays, no chasing.</div>
+      </div>
+      <div class="rm-step sr sr-d6">
+        <div class="rm-node">06</div>
+        <div class="rm-icon">📈</div>
+        <div class="rm-title">Repeat &amp; Grow</div>
+        <div class="rm-desc">Build your track record. Unlock higher-paying tasks as your rating grows.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ WHY HUSTL ═══════════ -->
+<section id="why">
+  <div class="wrap">
+    <div class="why-layout">
+      <div>
+        <div class="section-eyebrow sr"><span class="dot"></span>Why Choose Hustl</div>
+        <h2 class="section-head sr">Built for the<br>Nigerian <span style="color:var(--g)">Hustle</span></h2>
+        <p class="sr" style="color:var(--slate);font-size:1.05rem;margin-bottom:2.5rem">We built Hustl understanding the realities of Nigerian students and businesses — the need to earn, the trust required, and the power of simple systems.</p>
+        <div class="why-grid">
+          <div class="why-card sr sr-d1">
+            <div class="wc-ico">⚡</div>
+            <div class="wc-title">Fast Payouts</div>
+            <div class="wc-desc">Get paid within hours of task verification — not days. Your time has value.</div>
+          </div>
+          <div class="why-card sr sr-d2">
+            <div class="wc-ico">✅</div>
+            <div class="wc-title">Real Tasks Only</div>
+            <div class="wc-desc">Every task on Hustl is from a real, verified business. No fake clicks. No scams.</div>
+          </div>
+          <div class="why-card sr sr-d3">
+            <div class="wc-ico">🛡️</div>
+            <div class="wc-title">Verified System</div>
+            <div class="wc-desc">Both students and businesses go through verification. Trust is built into the platform.</div>
+          </div>
+          <div class="why-card sr sr-d4">
+            <div class="wc-ico">📱</div>
+            <div class="wc-title">Simple Workflow</div>
+            <div class="wc-desc">No complicated dashboards. Just clear tasks, simple submissions, and fast payment.</div>
+          </div>
+        </div>
+      </div>
+      <div class="why-big sr-right sr">
+        <div class="wb-inner">
+          <div class="wb-tag">Students can earn up to</div>
+          <div class="wb-num">₦50k</div>
+          <div class="wb-unit">per month on Hustl</div>
+          <div class="wb-desc">By completing just a few tasks a day in your free time</div>
+          <div class="wb-stats">
+            <div class="wbs-box">
+              <div class="wbs-val">500+</div>
+              <div class="wbs-lbl">Tasks monthly</div>
+            </div>
+            <div class="wbs-box">
+              <div class="wbs-val">2hrs</div>
+              <div class="wbs-lbl">Avg. completion</div>
+            </div>
+            <div class="wbs-box">
+              <div class="wbs-val">100%</div>
+              <div class="wbs-lbl">Remote work</div>
+            </div>
+            <div class="wbs-box">
+              <div class="wbs-val">₦0</div>
+              <div class="wbs-lbl">Cost to join</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FAQ ═══════════ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="faq-layout">
+      <div class="faq-left">
+        <div class="section-eyebrow sr"><span class="dot"></span>FAQ</div>
+        <h2 class="section-head sr">Common Questions</h2>
+        <p class="sr">Everything you need to know before joining. Can't find an answer? Just message us on WhatsApp.</p>
+        <div style="margin-top:2rem" class="sr">
+          <a href="https://wa.me/2349122478160?text=Hi+Hustl%2C+I+have+a+question"
+             target="_blank" rel="noopener" class="btn btn-green">
+            Ask on WhatsApp →
+          </a>
+        </div>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item sr">
+          <div class="faq-q">How do I get paid for tasks?<span class="faq-icon">+</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Once your task is submitted and verified by Hustl, payment is released directly to you — typically within a few hours. We use fast local transfer methods to make sure you get your money without friction.</div></div>
+        </div>
+        <div class="faq-item sr sr-d1">
+          <div class="faq-q">Are the tasks from real businesses?<span class="faq-icon">+</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes, 100%. Every business on Hustl is manually verified before they can post tasks. We do not allow fake or spam task submissions. Your time is valuable and we protect it.</div></div>
+        </div>
+        <div class="faq-item sr sr-d2">
+          <div class="faq-q">Who can join Hustl as a student?<span class="faq-icon">+</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Any Nigerian student with a smartphone can join. Whether you're in university, polytechnic, or a college of education — if you have basic internet access, you can earn on Hustl. No experience is required for basic tasks.</div></div>
+        </div>
+        <div class="faq-item sr sr-d3">
+          <div class="faq-q">How fast are payments after task completion?<span class="faq-icon">+</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Most task payments are processed within 2–6 hours of verification. Hustl's goal is same-day payment for all completed, verified tasks. We believe fast pay keeps hustlers motivated.</div></div>
+        </div>
+        <div class="faq-item sr sr-d4">
+          <div class="faq-q">How much can I realistically earn per month?<span class="faq-icon">+</span></div>
+          <div class="faq-a"><div class="faq-a-inner">It depends on how many tasks you pick up. Students doing 3–5 tasks a day typically earn between ₦20,000 and ₦50,000 per month. More tasks = more income. There's no cap on what you can earn.</div></div>
+        </div>
+        <div class="faq-item sr sr-d5">
+          <div class="faq-q">What kind of tasks are available?<span class="faq-icon">+</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Tasks include social media engagement, sharing promotional posts, writing captions, collecting leads, content reposting, and online reviews. All tasks are simple, digital, and completable from your phone in under 90 minutes.</div></div>
+        </div>
+        <div class="faq-item sr sr-d6">
+          <div class="faq-q">Is there a fee to join Hustl?<span class="faq-icon">+</span></div>
+          <div class="faq-a"><div class="faq-a-inner">No. Joining Hustl as a student is completely free. We earn when businesses pay for completed tasks. Students never pay any fee to access or complete tasks on the platform.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-center">
+      <div class="section-eyebrow sr" style="justify-content:center"><span class="dot"></span>Get in Touch</div>
+      <h2 class="sr">Ready to Join Hustl?</h2>
+      <p class="lead sr">Whether you're a student who wants to earn or a business looking for affordable digital support — reach out directly. We respond fast.</p>
+      <div class="contact-card sr">
+        <div class="contact-btns">
+          <a href="https://wa.me/2349122478160?text=Hi+Hustl%2C+I%27d+like+to+learn+more+and+get+started"
+             target="_blank" rel="noopener"
+             class="btn btn-wa btn-lg">
+            <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Chat on WhatsApp
+          </a>
+          <a href="tel:+2349122478160" class="btn btn-ghost btn-lg">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+            Call: +234 912 247 8160
+          </a>
+        </div>
+        <div class="contact-info">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Based in Nigeria &nbsp;·&nbsp; Mon – Sat &nbsp;·&nbsp;
+          <a href="https://wa.me/2349122478160" target="_blank" rel="noopener">Fast WhatsApp response</a>
+        </div>
+      </div>
+      <p class="sr" style="color:rgba(255,255,255,.3);font-size:.82rem">We typically reply within 30 minutes during business hours 🇳🇬</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="wrap footer-inner">
+    <div>
+      <div class="f-logo">Hust<em>l</em></div>
+      <div class="f-tagline">Simple tasks. Real work. Real income.</div>
+    </div>
+    <nav class="f-links" aria-label="Footer navigation">
+      <a href="#how">How it Works</a>
+      <a href="#students">For Students</a>
+      <a href="#businesses">For Businesses</a>
+      <a href="#tasks">Tasks</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="f-copy">© 2025 Hustl · Made in Nigeria 🇳🇬</div>
+  </div>
+</footer>
+
+<!-- SCROLL TOP BTN -->
+<button id="top-btn" aria-label="Scroll to top">↑</button>
+
+<!-- ═══════════ JAVASCRIPT ═══════════ -->
+<script>
+/* ── CUSTOM CURSOR ── */
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+});
+(function animRing(){
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(animRing);
+})();
+document.addEventListener('mouseleave', () => { cur.style.opacity = 0; ring.style.opacity = 0; });
+document.addEventListener('mouseenter', () => { cur.style.opacity = 1; ring.style.opacity = 1; });
+
+/* ── NAV SCROLL EFFECT ── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 55);
+  document.getElementById('top-btn').classList.toggle('show', window.scrollY > 450);
+}, { passive: true });
+
+/* ── HAMBURGER ── */
+const ham = document.getElementById('ham');
+const mob = document.getElementById('mob-menu');
+ham.addEventListener('click', () => {
+  ham.classList.toggle('active');
+  mob.classList.toggle('open');
+  document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : '';
+});
+document.querySelectorAll('.mob-link, .mob-ctas .btn').forEach(el => {
+  el.addEventListener('click', () => {
+    ham.classList.remove('active');
+    mob.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+/* ── SCROLL REVEAL ── */
+const srEls = document.querySelectorAll('.sr');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('up'); io.unobserve(e.target); }});
+}, { threshold: 0.1 });
+srEls.forEach(el => io.observe(el));
+
+/* ── FAQ ACCORDION ── */
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(o => o.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+
+/* ── SCROLL TOP ── */
+document.getElementById('top-btn').addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+/* ── HERO PANEL: auto-rotate task highlight ── */
+const ltItems = document.querySelectorAll('.lt-item');
+let ltIdx = 0;
+setInterval(() => {
+  ltItems.forEach(i => i.style.borderColor = '');
+  if (ltItems[ltIdx]) {
+    ltItems[ltIdx].style.borderColor = 'rgba(34,197,94,0.4)';
+    ltItems[ltIdx].style.background = 'rgba(255,255,255,0.08)';
+    setTimeout(() => {
+      if (ltItems[ltIdx]) {
+        ltItems[ltIdx].style.borderColor = '';
+        ltItems[ltIdx].style.background = '';
+      }
+    }, 900);
+  }
+  ltIdx = (ltIdx + 1) % ltItems.length;
+}, 2200);
+
+/* ── ACTIVE NAV LINK ON SCROLL ── */
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) cur = s.getAttribute('id');
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--g)' : '';
+  });
+}, { passive: true });
+</script>
+</body>
+</html>
