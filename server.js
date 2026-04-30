@@ -8,9 +8,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors({
-  origin: '*'
-}));
+const corsOptions = {
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Handle preflight requests
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -48,7 +53,6 @@ app.post('/signup', async (req, res) => {
   const role     = (req.body.role     || '').trim().toLowerCase();
   const password = (req.body.password || '').trim();
 
-  // Validation
   const errors = {};
   if (!name || name.length < 2)   errors.name     = 'Name is required.';
   if (!email)                      errors.email    = 'Email is required.';
@@ -61,7 +65,6 @@ app.post('/signup', async (req, res) => {
     return res.status(400).json({ success: false, message: 'Signup failed.', errors });
   }
 
-  // Check if email already exists
   const users = readUsers();
   const exists = users.find(u => u.email.toLowerCase() === email.toLowerCase());
   if (exists) {
@@ -72,7 +75,6 @@ app.post('/signup', async (req, res) => {
     });
   }
 
-  // Hash the password before saving
   const passwordHash = await bcrypt.hash(password, 10);
 
   const newUser = {
@@ -105,7 +107,6 @@ app.post('/login', async (req, res) => {
   const email    = (req.body.email    || '').trim().toLowerCase();
   const password = (req.body.password || '').trim();
 
-  // Validation
   if (!email || !password) {
     return res.status(400).json({
       success: false,
@@ -113,7 +114,6 @@ app.post('/login', async (req, res) => {
     });
   }
 
-  // Find user
   const users = readUsers();
   const user = users.find(u => u.email === email);
   if (!user) {
@@ -124,7 +124,6 @@ app.post('/login', async (req, res) => {
     });
   }
 
-  // Check password
   const isMatch = await bcrypt.compare(password, user.passwordHash);
   if (!isMatch) {
     return res.status(401).json({
@@ -134,7 +133,6 @@ app.post('/login', async (req, res) => {
     });
   }
 
-  // Success
   return res.json({
     success: true,
     message: `Welcome back, ${user.name}!`,
@@ -150,7 +148,6 @@ app.post('/login', async (req, res) => {
 // GET /users - Get all users
 app.get('/users', (req, res) => {
   const users = readUsers();
-  // Never send passwordHash to frontend
   const safe = users.map(({ passwordHash, ...rest }) => rest);
   return res.json({ success: true, total: safe.length, users: safe });
 });
