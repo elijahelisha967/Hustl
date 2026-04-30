@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dashboard — Hustl Business</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#0F172A;color:#F8FAFC;min-height:100vh}
+:root{
+  --g:#22C55E;--g-light:#4ADE80;--g-dark:#16A34A;--g-dim:rgba(34,197,94,.12);
+  --navy:#0F172A;--navy-2:#1E293B;
+  --slate:#94A3B8;--amber:#F59E0B;--amber-dim:rgba(245,158,11,.12);
+  --border:rgba(255,255,255,.08);--r:12px;--r-lg:18px;
+  --font-d:'Bricolage Grotesque',sans-serif;
+}
+
+.layout{display:flex;min-height:100vh}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  width:240px;flex-shrink:0;
+  background:#111827;border-right:1px solid var(--border);
+  display:flex;flex-direction:column;padding:1.75rem 1.25rem;
+  position:fixed;top:0;left:0;height:100vh;z-index:100;
+  transition:transform .3s ease;
+}
+.sidebar-logo{font-family:var(--font-d);font-weight:800;font-size:1.65rem;color:#fff;letter-spacing:-.04em;text-decoration:none;margin-bottom:2.5rem;display:block}
+.sidebar-logo em{color:var(--amber);font-style:normal}
+.nav-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.25);margin-bottom:.6rem;padding:0 .6rem}
+.nav-item{display:flex;align-items:center;gap:.75rem;padding:.7rem .85rem;border-radius:10px;font-size:.88rem;font-weight:500;color:rgba(255,255,255,.5);text-decoration:none;transition:all .2s;cursor:pointer;border:none;background:none;width:100%;text-align:left;margin-bottom:.15rem}
+.nav-item:hover{background:rgba(255,255,255,.05);color:rgba(255,255,255,.8)}
+.nav-item.active{background:var(--amber-dim);color:var(--amber);font-weight:600}
+.nav-item svg{flex-shrink:0;opacity:.7}
+.nav-item.active svg{opacity:1}
+.sidebar-spacer{flex:1}
+.sidebar-user{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--r);padding:.85rem;display:flex;align-items:center;gap:.75rem}
+.su-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--amber),#d97706);display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-weight:800;font-size:.9rem;color:var(--navy);flex-shrink:0}
+.su-info{min-width:0}
+.su-name{font-size:.82rem;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.su-role{font-size:.7rem;color:var(--amber);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+
+/* ── MAIN ── */
+.main{flex:1;margin-left:240px;padding:2rem 2.25rem;max-width:100%}
+
+/* ── TOPBAR ── */
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:2.25rem}
+.topbar-left h1{font-family:var(--font-d);font-weight:800;font-size:1.6rem;letter-spacing:-.02em}
+.topbar-left p{color:var(--slate);font-size:.88rem;margin-top:.2rem}
+.topbar-right{display:flex;align-items:center;gap:.75rem}
+.badge-biz{background:var(--amber-dim);color:var(--amber);font-size:.75rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.35rem .85rem;border-radius:100px;border:1px solid rgba(245,158,11,.25)}
+.btn-logout{background:rgba(255,255,255,.05);border:1px solid var(--border);color:rgba(255,255,255,.4);font-size:.8rem;font-weight:600;padding:.4rem .9rem;border-radius:8px;cursor:pointer;transition:all .2s}
+.btn-logout:hover{background:rgba(239,68,68,.1);border-color:rgba(239,68,68,.3);color:#FCA5A5}
+
+/* ── STATS ── */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.75rem}
+.stat-card{background:#1a2236;border:1px solid var(--border);border-radius:var(--r-lg);padding:1.35rem 1.5rem;position:relative;overflow:hidden}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--amber);opacity:.5;border-radius:3px 3px 0 0}
+.stat-card.green::before{background:var(--g)}
+.stat-card.blue::before{background:#60A5FA}
+.stat-card.purple::before{background:#A78BFA}
+.sc-label{font-size:.73rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:.6rem}
+.sc-value{font-family:var(--font-d);font-weight:800;font-size:1.75rem;color:#fff;line-height:1}
+.sc-sub{font-size:.75rem;color:rgba(255,255,255,.3);margin-top:.35rem}
+.sc-icon{position:absolute;top:1.1rem;right:1.1rem;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:var(--amber-dim)}
+.sc-icon.green{background:var(--g-dim)}
+.sc-icon.blue{background:rgba(96,165,250,.12)}
+.sc-icon.purple{background:rgba(167,139,250,.12)}
+
+/* ── GRID ── */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem}
+
+/* ── CARD ── */
+.card{background:#1a2236;border:1px solid var(--border);border-radius:var(--r-lg);padding:1.5rem}
+.card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.card-title{font-family:var(--font-d);font-weight:800;font-size:1rem;letter-spacing:-.01em}
+.card-tag{font-size:.7rem;font-weight:700;padding:.3rem .75rem;border-radius:100px;text-transform:uppercase;letter-spacing:.05em}
+.tag-amber{background:var(--amber-dim);color:var(--amber);border:1px solid rgba(245,158,11,.2)}
+.tag-green{background:var(--g-dim);color:var(--g);border:1px solid rgba(34,197,94,.2)}
+
+/* ── WA CTA ── */
+.wa-cta{
+  background:linear-gradient(135deg,#1a1200 0%,#0d1022 100%);
+  border:1px solid rgba(245,158,11,.2);border-radius:var(--r-lg);
+  padding:2rem;text-align:center;position:relative;overflow:hidden;margin-bottom:1.25rem;
+}
+.wa-cta::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(245,158,11,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(245,158,11,.03) 1px,transparent 1px);background-size:30px 30px}
+.wa-cta-inner{position:relative;z-index:1}
+.wa-icon{width:56px;height:56px;border-radius:16px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem}
+.wa-cta h3{font-family:var(--font-d);font-weight:800;font-size:1.25rem;margin-bottom:.5rem}
+.wa-cta p{color:rgba(255,255,255,.45);font-size:.85rem;max-width:380px;margin:0 auto 1.5rem;line-height:1.6}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-wa{display:inline-flex;align-items:center;gap:.6rem;background:#25D366;color:#fff;font-family:var(--font-d);font-weight:800;font-size:.95rem;padding:.85rem 2rem;border-radius:100px;text-decoration:none;box-shadow:0 6px 24px rgba(37,211,102,.3);transition:all .22s;border:none;cursor:pointer}
+.btn-wa:hover{background:#1ebe5a;box-shadow:0 10px 36px rgba(37,211,102,.45);transform:translateY(-2px)}
+.btn-outline{display:inline-flex;align-items:center;gap:.6rem;background:transparent;color:var(--amber);font-family:var(--font-d);font-weight:800;font-size:.95rem;padding:.85rem 2rem;border-radius:100px;text-decoration:none;border:1.5px solid rgba(245,158,11,.4);transition:all .22s;cursor:pointer}
+.btn-outline:hover{background:var(--amber-dim);border-color:var(--amber);transform:translateY(-2px)}
+
+/* ── PRICING CARDS ── */
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.85rem}
+.price-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem}
+.price-card.featured{background:rgba(245,158,11,.07);border-color:rgba(245,158,11,.2)}
+.price-name{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:.5rem}
+.price-card.featured .price-name{color:var(--amber)}
+.price-amount{font-family:var(--font-d);font-weight:800;font-size:1.3rem;color:#fff;margin-bottom:.25rem}
+.price-amount span{font-size:.75rem;font-weight:500;color:rgba(255,255,255,.35)}
+.price-desc{font-size:.75rem;color:rgba(255,255,255,.35);line-height:1.5}
+.price-badge{display:inline-block;background:var(--amber);color:var(--navy);font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;padding:.2rem .55rem;border-radius:100px;margin-bottom:.5rem}
+
+/* ── HOW IT WORKS ── */
+.steps{display:flex;flex-direction:column;gap:.9rem}
+.step-item{display:flex;align-items:flex-start;gap:.9rem;padding:.9rem 1rem;background:rgba(255,255,255,.02);border-radius:var(--r)}
+.step-num{width:28px;height:28px;border-radius:8px;flex-shrink:0;background:var(--amber-dim);color:var(--amber);border:1px solid rgba(245,158,11,.2);font-family:var(--font-d);font-weight:800;font-size:.8rem;display:flex;align-items:center;justify-content:center}
+.step-text strong{font-size:.86rem;color:#fff;display:block;margin-bottom:.15rem}
+.step-text span{font-size:.78rem;color:rgba(255,255,255,.35)}
+
+/* ── MOBILE ── */
+.hamburger{display:none;position:fixed;top:1rem;left:1rem;z-index:200;background:var(--navy-2);border:1px solid var(--border);border-radius:8px;padding:.5rem;cursor:pointer;color:#fff}
+@media(max-width:900px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .main{margin-left:0;padding:1.25rem;padding-top:3.5rem}
+  .stats-row{grid-template-columns:1fr 1fr}
+  .grid-2{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr}
+  .hamburger{display:flex}
+  .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:99}
+  .overlay.show{display:block}
+}
+</style>
+</head>
+<body>
+
+<button class="hamburger" id="hamburger" aria-label="Menu">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+</button>
+<div class="overlay" id="overlay"></div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <a href="index.html" class="sidebar-logo">Hust<em>l</em></a>
+
+  <div class="nav-label">Menu</div>
+  <a class="nav-item active" href="#">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+    Dashboard
+  </a>
+  <a class="nav-item" href="#">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    My Tasks
+  </a>
+  <a class="nav-item" href="#">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 100 7h5a3.5 3.5 0 110 7H6"/></svg>
+    Billing
+  </a>
+  <a class="nav-item" href="#">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    Profile
+  </a>
+
+  <div class="sidebar-spacer"></div>
+
+  <div class="sidebar-user">
+    <div class="su-avatar" id="sb-avatar">B</div>
+    <div class="su-info">
+      <div class="su-name" id="sb-name">Loading...</div>
+      <div class="su-role">Business</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <h1>Welcome, <span id="first-name">Business</span> 🏢</h1>
+      <p>Manage your promotions and track results</p>
+    </div>
+    <div class="topbar-right">
+      <span class="badge-biz">Business</span>
+      <button class="btn-logout" id="logout-btn">Log Out</button>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="sc-icon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      </div>
+      <div class="sc-label">Tasks Posted</div>
+      <div class="sc-value">0</div>
+      <div class="sc-sub">Post via WhatsApp</div>
+    </div>
+    <div class="stat-card green">
+      <div class="sc-icon green">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="sc-label">Tasks Completed</div>
+      <div class="sc-value">0</div>
+      <div class="sc-sub">Students working for you</div>
+    </div>
+    <div class="stat-card blue">
+      <div class="sc-icon blue">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <div class="sc-label">Students Reached</div>
+      <div class="sc-value">0</div>
+      <div class="sc-sub">Growing daily</div>
+    </div>
+    <div class="stat-card purple">
+      <div class="sc-icon purple">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 100 7h5a3.5 3.5 0 110 7H6"/></svg>
+      </div>
+      <div class="sc-label">Total Spent</div>
+      <div class="sc-value">₦0</div>
+      <div class="sc-sub">Pay after verification</div>
+    </div>
+  </div>
+
+  <!-- WA CTA -->
+  <div class="wa-cta">
+    <div class="wa-cta-inner">
+      <div class="wa-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="#F59E0B"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </div>
+      <h3>Ready to promote your business? 🚀</h3>
+      <p>Message Hustl on WhatsApp to post your first task. Hundreds of students will complete it within hours — likes, follows, reviews, shares and more.</p>
+      <div class="cta-btns">
+        <a href="https://wa.me/2349122478160?text=Hi%20Hustl!%20I%20just%20signed%20up%20as%20a%20business%20and%20want%20to%20post%20a%20task%20for%20students" class="btn-wa" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Post a Task on WhatsApp
+        </a>
+        <a href="https://wa.me/2349122478160?text=Hi%20Hustl!%20I%20want%20to%20know%20more%20about%20your%20pricing%20for%20businesses" class="btn-outline" target="_blank" rel="noopener">
+          Ask About Pricing
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM GRID -->
+  <div class="grid-2">
+
+    <!-- PRICING -->
+    <div class="card">
+      <div class="card-head">
+        <span class="card-title">Task Pricing</span>
+        <span class="card-tag tag-amber">Pay Per Task</span>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="price-name">Basic</div>
+          <div class="price-amount">₦500 <span>/ task</span></div>
+          <div class="price-desc">Follow, like, or comment on a post</div>
+        </div>
+        <div class="price-card featured">
+          <div class="price-badge">Popular</div>
+          <div class="price-name">Standard</div>
+          <div class="price-amount">₦1,000 <span>/ task</span></div>
+          <div class="price-desc">Share + review + multiple actions</div>
+        </div>
+        <div class="price-card">
+          <div class="price-name">Bulk</div>
+          <div class="price-amount">₦5,000 <span>/ 10 tasks</span></div>
+          <div class="price-desc">10 students, best value for campaigns</div>
+        </div>
+      </div>
+      <p style="font-size:.76rem;color:rgba(255,255,255,.25);margin-top:1rem;line-height:1.6">💡 Prices are negotiable. Message us on WhatsApp to discuss your campaign needs and budget.</p>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="card">
+      <div class="card-head">
+        <span class="card-title">How It Works</span>
+        <span class="card-tag tag-green">4 Steps</span>
+      </div>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <strong>Message Hustl on WhatsApp</strong>
+            <span>Tell us what you want — followers, reviews, shares, etc.</span>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <strong>We Post Your Task</strong>
+            <span>Your task goes out to hundreds of student hustlers immediately</span>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <strong>Students Complete It</strong>
+            <span>They submit proof. We verify every submission for quality</span>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <strong>You Pay & See Results</strong>
+            <span>Pay only for verified completions. Transfer to Hustl account</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  const raw = localStorage.getItem('hustl_user');
+  if (!raw) { window.location.href = 'login.html'; return; }
+
+  const user = JSON.parse(raw);
+
+  // If user is student, redirect to student dashboard
+  if (user.role === 'student') {
+    window.location.href = 'student-dashboard.html';
+    return;
+  }
+
+  const firstName = (user.name || 'Business').split(' ')[0];
+  const initials  = (user.name || 'B').split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase();
+
+  document.getElementById('first-name').textContent = firstName;
+  document.getElementById('sb-name').textContent    = user.name || user.email;
+  document.getElementById('sb-avatar').textContent  = initials;
+});
+
+document.getElementById('logout-btn').addEventListener('click', () => {
+  localStorage.removeItem('hustl_user');
+  window.location.href = 'login.html';
+});
+
+const hamburger = document.getElementById('hamburger');
+const sidebar   = document.getElementById('sidebar');
+const overlay   = document.getElementById('overlay');
+hamburger.addEventListener('click', () => { sidebar.classList.toggle('open'); overlay.classList.toggle('show'); });
+overlay.addEventListener('click',   () => { sidebar.classList.remove('open'); overlay.classList.remove('show'); });
+</script>
+</body>
+</html>

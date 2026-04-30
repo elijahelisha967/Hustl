@@ -583,8 +583,10 @@ document.getElementById('signup-form').addEventListener('submit', async function
       return;
     }
 
-    setLoading(false);
-    showSuccess(data.user.name, data.user.role);
+   setLoading(false);s
+localStorage.setItem('hustl_user', JSON.stringify(data.user));
+const role = data.user.role;
+window.location.href = role === 'business' ? 'business.html' : 'student.html';
 
   } catch (err) {
     setLoading(false);

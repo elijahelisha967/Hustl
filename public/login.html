@@ -420,7 +420,8 @@ document.getElementById('login-form').addEventListener('submit', async function(
 
     // Redirect to homepage
     setTimeout(() => {
-      window.location.href = 'index.html';
+     const role = data.user.role;
+window.location.href = role === 'business' ? 'business.html' : 'student.html';
     }, 1500);
 
   } catch (err) {
