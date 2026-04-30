@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcryptjs');
@@ -7,46 +6,42 @@ const bcrypt = require('bcryptjs');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
-const corsOptions = {
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-};
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // Handle preflight requests
+// Manual CORS — fixes Railway preflight 502
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  next();
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Database file path
 const DB_FILE = path.join(__dirname, 'data', 'users.json');
 
-// Read users from file
 function readUsers() {
   if (!fs.existsSync(DB_FILE)) return [];
   return JSON.parse(fs.readFileSync(DB_FILE, 'utf-8'));
 }
 
-// Save users to file
 function saveUsers(users) {
   const dir = path.dirname(DB_FILE);
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(DB_FILE, JSON.stringify(users, null, 2));
 }
 
-// Validate email
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-// GET / - Check server
 app.get('/', (req, res) => {
   res.json({ message: '⚡ Hustl API is running!' });
 });
 
-// POST /signup - Register new user WITH password
 app.post('/signup', async (req, res) => {
   const name     = (req.body.name     || '').trim();
   const email    = (req.body.email    || '').trim();
@@ -102,16 +97,12 @@ app.post('/signup', async (req, res) => {
   });
 });
 
-// POST /login - Login with email + password
 app.post('/login', async (req, res) => {
   const email    = (req.body.email    || '').trim().toLowerCase();
   const password = (req.body.password || '').trim();
 
   if (!email || !password) {
-    return res.status(400).json({
-      success: false,
-      message: 'Email and password are required.'
-    });
+    return res.status(400).json({ success: false, message: 'Email and password are required.' });
   }
 
   const users = readUsers();
@@ -136,23 +127,16 @@ app.post('/login', async (req, res) => {
   return res.json({
     success: true,
     message: `Welcome back, ${user.name}!`,
-    user: {
-      id:    user.id,
-      name:  user.name,
-      email: user.email,
-      role:  user.role
-    }
+    user: { id: user.id, name: user.name, email: user.email, role: user.role }
   });
 });
 
-// GET /users - Get all users
 app.get('/users', (req, res) => {
   const users = readUsers();
   const safe = users.map(({ passwordHash, ...rest }) => rest);
   return res.json({ success: true, total: safe.length, users: safe });
 });
 
-// GET /users/:id - Get one user
 app.get('/users/:id', (req, res) => {
   const users = readUsers();
   const user = users.find(u => u.id === Number(req.params.id));
@@ -161,7 +145,6 @@ app.get('/users/:id', (req, res) => {
   return res.json({ success: true, user: safe });
 });
 
-// DELETE /users/:id - Delete a user
 app.delete('/users/:id', (req, res) => {
   const users = readUsers();
   const index = users.findIndex(u => u.id === Number(req.params.id));
@@ -171,7 +154,6 @@ app.delete('/users/:id', (req, res) => {
   return res.json({ success: true, message: `${removed.name} removed.` });
 });
 
-// Start server
 app.listen(PORT, () => {
   console.log('================================');
   console.log('  ⚡ Hustl Backend is running!');
