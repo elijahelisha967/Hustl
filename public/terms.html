@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Terms of Service — Hustl</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#0F172A;color:#F8FAFC;min-height:100vh;}
+:root{
+  --g:#22C55E;--g-light:#4ADE80;--g-dim:rgba(34,197,94,.12);
+  --navy:#0F172A;--navy-2:#1E293B;--slate:#94A3B8;--amber:#F59E0B;
+  --border:rgba(255,255,255,.08);--r:12px;--font-d:'Bricolage Grotesque',sans-serif;
+}
+
+/* NAV */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 3rem;border-bottom:1px solid var(--border);}
+.logo{font-family:var(--font-d);font-weight:800;font-size:1.65rem;color:#fff;letter-spacing:-.04em;text-decoration:none;}
+.logo em{color:var(--g);font-style:normal}
+.nav-back{font-size:.85rem;color:var(--slate);text-decoration:none;font-weight:600;transition:color .2s;}
+.nav-back:hover{color:var(--g)}
+
+/* HERO */
+.hero{
+  background:linear-gradient(150deg,#0a1225 0%,#0d1a10 100%);
+  border-bottom:1px solid var(--border);
+  padding:4rem 3rem 3rem;position:relative;overflow:hidden;
+}
+.hero-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(34,197,94,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(34,197,94,.04) 1px,transparent 1px);background-size:46px 46px;}
+.hero-orb{position:absolute;top:-20%;right:-10%;width:50%;height:80%;background:radial-gradient(circle,rgba(34,197,94,.15) 0%,transparent 60%);pointer-events:none;}
+.hero-inner{position:relative;z-index:1;max-width:780px;}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--g-dim);border:1px solid rgba(34,197,94,.2);color:var(--g);font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.35rem .85rem;border-radius:100px;margin-bottom:1.25rem;}
+.hero h1{font-family:var(--font-d);font-weight:800;font-size:clamp(2rem,4vw,3rem);letter-spacing:-.025em;line-height:1.1;margin-bottom:1rem;}
+.hero p{color:rgba(255,255,255,.5);font-size:.95rem;line-height:1.7;max-width:520px;}
+.hero-meta{margin-top:1.5rem;font-size:.8rem;color:rgba(255,255,255,.25);}
+
+/* LAYOUT */
+.container{max-width:780px;margin:0 auto;padding:3rem 2rem 6rem;}
+
+/* IMPORTANT NOTICE */
+.notice{
+  background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(34,197,94,.04));
+  border:1px solid rgba(34,197,94,.2);border-radius:16px;
+  padding:1.75rem 2rem;margin-bottom:3rem;
+}
+.notice-head{display:flex;align-items:center;gap:.75rem;margin-bottom:.85rem;}
+.notice-icon{width:36px;height:36px;border-radius:10px;background:var(--g-dim);border:1px solid rgba(34,197,94,.25);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.notice-head h3{font-family:var(--font-d);font-weight:800;font-size:1.05rem;color:var(--g)}
+.notice p{font-size:.9rem;color:rgba(255,255,255,.6);line-height:1.75;}
+.notice strong{color:#fff}
+
+/* SECTIONS */
+.section{margin-bottom:2.75rem;}
+.section h2{font-family:var(--font-d);font-weight:800;font-size:1.25rem;letter-spacing:-.015em;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.6rem;}
+.section h2 .num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;background:var(--g-dim);border:1px solid rgba(34,197,94,.2);color:var(--g);font-size:.72rem;font-weight:800;border-radius:7px;flex-shrink:0;}
+.section p{color:rgba(255,255,255,.55);font-size:.9rem;line-height:1.82;margin-bottom:.9rem;}
+.section p:last-child{margin-bottom:0}
+.section ul{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-top:.5rem;}
+.section ul li{display:flex;align-items:flex-start;gap:.7rem;font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.65;}
+.section ul li::before{content:'→';color:var(--g);font-weight:700;flex-shrink:0;margin-top:.05rem;}
+.section strong{color:rgba(255,255,255,.85)}
+
+/* FOOTER */
+.legal-footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.legal-footer p{font-size:.78rem;color:rgba(255,255,255,.25);}
+.legal-footer a{font-size:.78rem;color:var(--slate);text-decoration:none;font-weight:600;transition:color .2s;}
+.legal-footer a:hover{color:var(--g)}
+
+@media(max-width:640px){
+  .nav{padding:1.25rem 1.5rem}
+  .hero{padding:3rem 1.5rem 2.5rem}
+  .container{padding:2rem 1.5rem 4rem}
+  .legal-footer{padding:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="logo">Hust<em>l</em></a>
+  <a href="index.html" class="nav-back">← Back to Home</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-orb"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">📄 Legal</div>
+    <h1>Terms of Service</h1>
+    <p>By signing up and using Hustl, you agree to the following terms. Please read them carefully before using our platform.</p>
+    <div class="hero-meta">Last updated: May 2025 · Applies to all Hustl users in Nigeria</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- IMPORTANT NOTICE -->
+  <div class="notice">
+    <div class="notice-head">
+      <div class="notice-icon">⚠️</div>
+      <h3>Important Notice — Please Read First</h3>
+    </div>
+    <p><strong>Hustl is not a get-rich-quick scheme.</strong> We are a platform designed to provide Nigerian students with a legitimate, supplementary source of income by connecting them with real businesses that need simple digital marketing tasks completed. Hustl is meant to assist students with basic funding — covering transport, data, food, and everyday expenses — not to replace employment or guarantee a full-time income. Any user found misusing the platform or creating unrealistic expectations for others will be removed.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">1</span> Who We Are</h2>
+    <p>Hustl is a Nigerian digital platform that connects students with businesses for the purpose of completing simple, legitimate digital marketing tasks such as social media engagement, reviews, and content sharing. We act as an intermediary and do not directly employ users.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">2</span> Eligibility</h2>
+    <p>To use Hustl, you must:</p>
+    <ul>
+      <li>Be at least 16 years old</li>
+      <li>Be a resident of Nigeria</li>
+      <li>Provide accurate and truthful information during registration</li>
+      <li>Have access to a smartphone or computer and a valid bank account or mobile money wallet for payments</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">3</span> Student Terms</h2>
+    <p>As a student on Hustl, you agree to:</p>
+    <ul>
+      <li>Only claim tasks you genuinely intend to complete</li>
+      <li>Submit honest, real proof of task completion — no fake screenshots or fraudulent submissions</li>
+      <li>Complete tasks within the specified timeframe</li>
+      <li>Treat businesses and Hustl administrators with respect</li>
+      <li>Not create multiple accounts to claim the same task</li>
+    </ul>
+    <p>Students who submit fraudulent proof, spam tasks, or violate these terms will be permanently banned without payment.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">4</span> Business Terms</h2>
+    <p>As a business on Hustl, you agree to:</p>
+    <ul>
+      <li>Only post legitimate tasks that are legal under Nigerian law</li>
+      <li>Pay the agreed amount promptly upon task verification</li>
+      <li>Not request tasks that involve deception, illegal activity, or harm to others</li>
+      <li>Treat students fairly and provide clear task instructions</li>
+      <li>Not use student data for any purpose outside of the task</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">5</span> Payments</h2>
+    <p>Hustl facilitates payments between businesses and students. Payment is only released after a task has been verified by Hustl administrators. <strong>Hustl takes no responsibility for delayed payments caused by third-party payment processors</strong> such as Opay, Palmpay, or bank transfers.</p>
+    <p>All payments are in Nigerian Naira (₦). Hustl reserves the right to charge a small service fee to businesses in the future, with advance notice given to all users.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">6</span> Prohibited Activities</h2>
+    <p>The following are strictly prohibited on Hustl:</p>
+    <ul>
+      <li>Submitting fake or manipulated proof of task completion</li>
+      <li>Creating multiple accounts</li>
+      <li>Posting illegal, harmful, or misleading tasks</li>
+      <li>Harassing other users or Hustl staff</li>
+      <li>Attempting to bypass the platform by dealing directly with other users to avoid Hustl's process</li>
+      <li>Using the platform to spread misinformation or spam</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">7</span> Limitation of Liability</h2>
+    <p>Hustl is provided "as is." We do not guarantee a minimum number of tasks, a minimum income, or uninterrupted availability of the platform. <strong>Hustl is not liable for any loss of income, missed opportunities, or damages</strong> arising from use of or inability to use the platform.</p>
+    <p>We reserve the right to suspend or terminate any account at any time for violations of these terms.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">8</span> Changes to These Terms</h2>
+    <p>Hustl may update these Terms of Service at any time. Users will be notified via WhatsApp or email. Continued use of the platform after changes constitutes acceptance of the new terms.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">9</span> Contact Us</h2>
+    <p>If you have questions about these terms, contact us on WhatsApp: <strong>+234 912 247 8160</strong> or send a message through our platform.</p>
+  </div>
+
+</div>
+
+<div class="legal-footer">
+  <p>© 2025 Hustl · Made in Nigeria 🇳🇬</p>
+  <a href="privacy.html">Privacy Policy →</a>
+</div>
+
+</body>
+</html>

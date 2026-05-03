@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Privacy Policy — Hustl</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#0F172A;color:#F8FAFC;min-height:100vh;}
+:root{
+  --g:#22C55E;--g-light:#4ADE80;--g-dim:rgba(34,197,94,.12);
+  --navy:#0F172A;--navy-2:#1E293B;--slate:#94A3B8;--amber:#F59E0B;
+  --border:rgba(255,255,255,.08);--r:12px;--font-d:'Bricolage Grotesque',sans-serif;
+}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 3rem;border-bottom:1px solid var(--border);}
+.logo{font-family:var(--font-d);font-weight:800;font-size:1.65rem;color:#fff;letter-spacing:-.04em;text-decoration:none;}
+.logo em{color:var(--g);font-style:normal}
+.nav-back{font-size:.85rem;color:var(--slate);text-decoration:none;font-weight:600;transition:color .2s;}
+.nav-back:hover{color:var(--g)}
+.hero{background:linear-gradient(150deg,#0a1225 0%,#0d1a10 100%);border-bottom:1px solid var(--border);padding:4rem 3rem 3rem;position:relative;overflow:hidden;}
+.hero-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(34,197,94,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(34,197,94,.04) 1px,transparent 1px);background-size:46px 46px;}
+.hero-orb{position:absolute;top:-20%;right:-10%;width:50%;height:80%;background:radial-gradient(circle,rgba(34,197,94,.15) 0%,transparent 60%);pointer-events:none;}
+.hero-inner{position:relative;z-index:1;max-width:780px;}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--g-dim);border:1px solid rgba(34,197,94,.2);color:var(--g);font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.35rem .85rem;border-radius:100px;margin-bottom:1.25rem;}
+.hero h1{font-family:var(--font-d);font-weight:800;font-size:clamp(2rem,4vw,3rem);letter-spacing:-.025em;line-height:1.1;margin-bottom:1rem;}
+.hero p{color:rgba(255,255,255,.5);font-size:.95rem;line-height:1.7;max-width:520px;}
+.hero-meta{margin-top:1.5rem;font-size:.8rem;color:rgba(255,255,255,.25);}
+.container{max-width:780px;margin:0 auto;padding:3rem 2rem 6rem;}
+.notice{background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(34,197,94,.04));border:1px solid rgba(34,197,94,.2);border-radius:16px;padding:1.75rem 2rem;margin-bottom:3rem;}
+.notice-head{display:flex;align-items:center;gap:.75rem;margin-bottom:.85rem;}
+.notice-icon{width:36px;height:36px;border-radius:10px;background:var(--g-dim);border:1px solid rgba(34,197,94,.25);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.notice-head h3{font-family:var(--font-d);font-weight:800;font-size:1.05rem;color:var(--g)}
+.notice p{font-size:.9rem;color:rgba(255,255,255,.6);line-height:1.75;}
+.notice strong{color:#fff}
+.section{margin-bottom:2.75rem;}
+.section h2{font-family:var(--font-d);font-weight:800;font-size:1.25rem;letter-spacing:-.015em;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.6rem;}
+.section h2 .num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;background:var(--g-dim);border:1px solid rgba(34,197,94,.2);color:var(--g);font-size:.72rem;font-weight:800;border-radius:7px;flex-shrink:0;}
+.section p{color:rgba(255,255,255,.55);font-size:.9rem;line-height:1.82;margin-bottom:.9rem;}
+.section p:last-child{margin-bottom:0}
+.section ul{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-top:.5rem;}
+.section ul li{display:flex;align-items:flex-start;gap:.7rem;font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.65;}
+.section ul li::before{content:'→';color:var(--g);font-weight:700;flex-shrink:0;margin-top:.05rem;}
+.section strong{color:rgba(255,255,255,.85)}
+.legal-footer{border-top:1px solid var(--border);padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.legal-footer p{font-size:.78rem;color:rgba(255,255,255,.25);}
+.legal-footer a{font-size:.78rem;color:var(--slate);text-decoration:none;font-weight:600;transition:color .2s;}
+.legal-footer a:hover{color:var(--g)}
+@media(max-width:640px){
+  .nav{padding:1.25rem 1.5rem}
+  .hero{padding:3rem 1.5rem 2.5rem}
+  .container{padding:2rem 1.5rem 4rem}
+  .legal-footer{padding:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="logo">Hust<em>l</em></a>
+  <a href="index.html" class="nav-back">← Back to Home</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-orb"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">🔒 Privacy</div>
+    <h1>Privacy Policy</h1>
+    <p>Your privacy matters to us. This policy explains what data we collect, how we use it, and how we protect it.</p>
+    <div class="hero-meta">Last updated: May 2025 · Applies to all Hustl users in Nigeria</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="notice">
+    <div class="notice-head">
+      <div class="notice-icon">🔒</div>
+      <h3>Our Commitment to You</h3>
+    </div>
+    <p><strong>We will never sell your personal data.</strong> Hustl collects only the information necessary to operate the platform and connect students with businesses. We do not share your information with advertisers or third parties for marketing purposes.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">1</span> What Information We Collect</h2>
+    <p>When you sign up for Hustl, we collect:</p>
+    <ul>
+      <li>Your full name</li>
+      <li>Your email address</li>
+      <li>Your account type (student or business)</li>
+      <li>Your encrypted password (we never store your plain-text password)</li>
+      <li>The date you joined the platform</li>
+    </ul>
+    <p>We do not currently collect payment details, phone numbers, or location data directly through the website.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">2</span> How We Use Your Information</h2>
+    <p>We use your information to:</p>
+    <ul>
+      <li>Create and manage your Hustl account</li>
+      <li>Connect you with relevant tasks or students (depending on your role)</li>
+      <li>Send you important platform updates via WhatsApp or email</li>
+      <li>Verify your identity and prevent fraud</li>
+      <li>Improve the platform based on usage patterns</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">3</span> How We Store Your Data</h2>
+    <p>Your data is stored securely on our backend server hosted on Railway. Passwords are encrypted using industry-standard hashing (bcryptjs) before being stored — meaning even we cannot see your password.</p>
+    <p>We take reasonable steps to protect your data, but no system is 100% secure. <strong>Do not share your Hustl password with anyone.</strong></p>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">4</span> Who We Share Your Data With</h2>
+    <p>We do not sell, rent, or trade your personal information. We may share limited information in the following cases:</p>
+    <ul>
+      <li>With businesses when you claim their task (your name may be visible to them)</li>
+      <li>With law enforcement if legally required to do so</li>
+      <li>With service providers who help us run the platform (e.g. hosting providers), under strict confidentiality</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">5</span> WhatsApp Communication</h2>
+    <p>Hustl operates primarily through WhatsApp for task distribution and support. By joining our WhatsApp groups, you agree that your phone number and WhatsApp display name will be visible to group members. Please do not share sensitive personal information in WhatsApp groups.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">6</span> Your Rights</h2>
+    <p>You have the right to:</p>
+    <ul>
+      <li>Request a copy of the data we hold about you</li>
+      <li>Request correction of inaccurate data</li>
+      <li>Request deletion of your account and associated data</li>
+    </ul>
+    <p>To exercise any of these rights, contact us on WhatsApp at <strong>+234 912 247 8160</strong>.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">7</span> Cookies</h2>
+    <p>Hustl does not currently use tracking cookies. We use browser localStorage to keep you logged in between sessions. This data stays on your device and is not sent to any third party.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">8</span> Children's Privacy</h2>
+    <p>Hustl is not intended for users under the age of 16. We do not knowingly collect data from children. If you believe a minor has registered, please contact us immediately.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">9</span> Changes to This Policy</h2>
+    <p>We may update this Privacy Policy as the platform grows. Any significant changes will be communicated via WhatsApp or email. Continued use of Hustl after changes means you accept the updated policy.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">10</span> Contact Us</h2>
+    <p>For any privacy concerns or data requests, reach us on WhatsApp: <strong>+234 912 247 8160</strong></p>
+  </div>
+
+</div>
+
+<div class="legal-footer">
+  <p>© 2025 Hustl · Made in Nigeria 🇳🇬</p>
+  <a href="terms.html">Terms of Service →</a>
+</div>
+
+</body>
+</html>
