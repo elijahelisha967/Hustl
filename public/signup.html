@@ -10,18 +10,11 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;-webkit-font-smoothing:antialiased}
-body{
-  font-family:'Plus Jakarta Sans',sans-serif;
-  background:#0F172A;color:#F8FAFC;
-  min-height:100vh;display:flex;
-}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#0F172A;color:#F8FAFC;min-height:100vh;display:flex;}
 :root{
-  --g:#22C55E;--g-light:#4ADE80;--g-dark:#16A34A;
-  --g-dim:rgba(34,197,94,.12);
-  --navy:#0F172A;--navy-2:#1E293B;
-  --slate:#94A3B8;--amber:#F59E0B;
-  --border:rgba(255,255,255,.1);
-  --r:12px;--r-lg:20px;
+  --g:#22C55E;--g-light:#4ADE80;--g-dark:#16A34A;--g-dim:rgba(34,197,94,.12);
+  --navy:#0F172A;--navy-2:#1E293B;--slate:#94A3B8;--amber:#F59E0B;
+  --border:rgba(255,255,255,.1);--r:12px;--r-lg:20px;
   --font-d:'Bricolage Grotesque',sans-serif;
 }
 .side{width:42%;flex-shrink:0;background:linear-gradient(150deg,#0a1225 0%,#0d1a10 100%);display:flex;flex-direction:column;padding:2.75rem 3.25rem;position:relative;overflow:hidden;}
@@ -86,15 +79,6 @@ body{
 .form-switch{text-align:center;margin-top:1.75rem;font-size:.87rem;color:var(--slate);}
 .form-switch a{color:var(--g);font-weight:600;text-decoration:none;transition:color .2s}
 .form-switch a:hover{color:var(--g-light)}
-.success-state{text-align:center;display:none;animation:fadeUp .5s ease both;}
-.success-state .s-check{width:72px;height:72px;border-radius:50%;background:var(--g-dim);border:2px solid var(--g);display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 1.5rem;}
-.success-state h2{font-family:var(--font-d);font-weight:800;font-size:1.7rem;margin-bottom:.75rem;}
-.success-state p{color:var(--slate);margin-bottom:2rem;font-size:.95rem}
-.success-state .s-role-badge{display:inline-block;padding:.4rem 1.2rem;border-radius:100px;background:var(--g-dim);border:1px solid rgba(34,197,94,.3);color:var(--g);font-weight:700;font-size:.85rem;margin-bottom:1.5rem;}
-.btn-wa{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;width:100%;padding:.95rem;border:none;border-radius:100px;background:#25D366;color:#fff;font-family:var(--font-d);font-weight:800;font-size:.95rem;cursor:pointer;box-shadow:0 6px 24px rgba(37,211,102,.3);transition:all .22s;text-decoration:none;margin-bottom:.85rem;}
-.btn-wa:hover{background:#1aae56;transform:translateY(-2px)}
-.btn-back{display:block;width:100%;padding:.85rem;border:1.5px solid rgba(255,255,255,.12);border-radius:100px;background:transparent;color:rgba(255,255,255,.6);font-family:var(--font-d);font-weight:700;font-size:.88rem;cursor:pointer;transition:all .22s;text-align:center;}
-.btn-back:hover{border-color:rgba(255,255,255,.3);color:#fff}
 @media(max-width:820px){.side{display:none}.form-side{padding:2.5rem 1.5rem;min-height:100vh;align-items:flex-start;padding-top:3rem}}
 @media(max-width:420px){.form-side{padding:2rem 1.25rem}}
 </style>
@@ -128,107 +112,90 @@ body{
 
 <div class="form-side">
   <div class="form-box">
-
-    <div id="form-view">
-      <div class="fb-head">
-        <h1>Create your account</h1>
-        <p>Already have an account? <a href="login.html">Log in →</a></p>
-      </div>
-
-      <div class="toast" id="toast" role="alert">
-        <span class="toast-ico" id="toast-ico"></span>
-        <span id="toast-msg"></span>
-      </div>
-
-      <div class="role-toggle" role="group" aria-label="Select your role">
-        <button type="button" class="role-btn active" id="btn-student" onclick="setRole('student')">🎓 I'm a Student</button>
-        <button type="button" class="role-btn" id="btn-business" onclick="setRole('business')">🏢 I'm a Business</button>
-      </div>
-
-      <input type="hidden" id="role-val" value="student"/>
-
-      <form id="signup-form" novalidate>
-        <div class="field">
-          <label for="name">Full name</label>
-          <div class="input-wrap">
-            <span class="i-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
-            <input type="text" id="name" placeholder="e.g. Chidi Okonkwo" autocomplete="name"/>
-          </div>
-          <span class="field-err" id="name-err"></span>
-        </div>
-
-        <div class="field">
-          <label for="email">Email address</label>
-          <div class="input-wrap">
-            <span class="i-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
-            <input type="email" id="email" placeholder="you@example.com" autocomplete="email"/>
-          </div>
-          <span class="field-err" id="email-err"></span>
-        </div>
-
-        <div class="field">
-          <label for="password">Password</label>
-          <div class="input-wrap">
-            <span class="i-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span>
-            <input type="password" id="password" placeholder="Min. 6 characters"/>
-            <button type="button" class="toggle-pw" id="toggle-pw" aria-label="Show/hide password">
-              <svg id="eye-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            </button>
-          </div>
-          <span class="field-err" id="password-err"></span>
-        </div>
-
-        <div class="terms-row">
-          <input type="checkbox" id="terms"/>
-          <label for="terms">I agree to Hustl's <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>. I'm ready to hustle.</label>
-        </div>
-
-        <button type="submit" class="btn-submit" id="submit-btn">
-          <span id="btn-text">Create Account — It's Free</span>
-          <div class="spinner" id="spinner"></div>
-        </button>
-      </form>
-
-      <div class="form-switch">Already on Hustl? <a href="login.html">Log in to your account →</a></div>
+    <div class="fb-head">
+      <h1>Create your account</h1>
+      <p>Already have an account? <a href="login.html">Log in →</a></p>
     </div>
 
-    <div class="success-state" id="success-view">
-      <div class="s-check">🎉</div>
-      <h2>You're in!</h2>
-      <div class="s-role-badge" id="success-role-badge"></div>
-      <p id="success-msg"></p>
-      <a href="https://wa.me/2349122478160?text=Hi+Hustl%2C+I+just+signed+up+and+I%27m+ready+to+get+started!" target="_blank" rel="noopener" class="btn-wa">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Join Hustl on WhatsApp
-      </a>
-      <button class="btn-back" onclick="resetForm()">← Sign up another account</button>
+    <div class="toast" id="toast" role="alert">
+      <span class="toast-ico" id="toast-ico"></span>
+      <span id="toast-msg"></span>
     </div>
 
+    <div class="role-toggle" role="group">
+      <button type="button" class="role-btn active" id="btn-student" onclick="setRole('student')">🎓 I'm a Student</button>
+      <button type="button" class="role-btn" id="btn-business" onclick="setRole('business')">🏢 I'm a Business</button>
+    </div>
+
+    <form id="signup-form" novalidate>
+      <div class="field">
+        <label for="name">Full name</label>
+        <div class="input-wrap">
+          <span class="i-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+          <input type="text" id="name" placeholder="e.g. Chidi Okonkwo" autocomplete="name"/>
+        </div>
+        <span class="field-err" id="name-err"></span>
+      </div>
+
+      <div class="field">
+        <label for="email">Email address</label>
+        <div class="input-wrap">
+          <span class="i-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+          <input type="email" id="email" placeholder="you@example.com" autocomplete="email"/>
+        </div>
+        <span class="field-err" id="email-err"></span>
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <div class="input-wrap">
+          <span class="i-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span>
+          <input type="password" id="password" placeholder="Min. 6 characters"/>
+          <button type="button" class="toggle-pw" id="toggle-pw" aria-label="Show/hide password">
+            <svg id="eye-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <span class="field-err" id="password-err"></span>
+      </div>
+
+      <div class="terms-row">
+        <input type="checkbox" id="terms"/>
+        <label for="terms">I agree to Hustl's <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>. I'm ready to hustle.</label>
+      </div>
+
+      <button type="submit" class="btn-submit" id="submit-btn">
+        <span id="btn-text">Create Account — It's Free</span>
+        <div class="spinner" id="spinner"></div>
+      </button>
+    </form>
+
+    <div class="form-switch">Already on Hustl? <a href="login.html">Log in to your account →</a></div>
   </div>
 </div>
 
 <script>
 const API_URL = 'https://hustl-production-1189.up.railway.app';
+let selectedRole = 'student';
 
 function setRole(r) {
-  document.getElementById('role-val').value = r;
+  selectedRole = r;
   document.getElementById('btn-student').classList.toggle('active', r === 'student');
   document.getElementById('btn-business').classList.toggle('active', r === 'business');
 }
 
-function showToast(msg, type = 'error') {
-  const toast = document.getElementById('toast');
-  const ico   = document.getElementById('toast-ico');
-  const text  = document.getElementById('toast-msg');
-  toast.className = `toast ${type} show`;
-  ico.textContent  = type === 'error' ? '⚠️' : '✅';
-  text.textContent = msg;
-  if (type === 'success') setTimeout(() => toast.classList.remove('show'), 4000);
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  const i = document.getElementById('toast-ico');
+  const m = document.getElementById('toast-msg');
+  t.className = 'toast ' + type + ' show';
+  i.textContent = type === 'error' ? '⚠️' : '✅';
+  m.textContent = msg;
+  if (type === 'success') setTimeout(function(){ t.classList.remove('show'); }, 4000);
 }
 
 function setErr(inputId, errId, msg) {
-  const input = document.getElementById(inputId);
-  const span  = document.getElementById(errId);
+  var input = document.getElementById(inputId);
+  var span  = document.getElementById(errId);
   if (msg) { input.classList.add('error'); span.textContent = msg; span.classList.add('show'); }
   else     { input.classList.remove('error'); span.classList.remove('show'); }
 }
@@ -241,53 +208,35 @@ function clearAll() {
 }
 
 function setLoading(on) {
-  const btn  = document.getElementById('submit-btn');
-  const text = document.getElementById('btn-text');
-  const spin = document.getElementById('spinner');
+  var btn  = document.getElementById('submit-btn');
+  var text = document.getElementById('btn-text');
+  var spin = document.getElementById('spinner');
   btn.disabled       = on;
   text.style.display = on ? 'none' : 'block';
   spin.style.display = on ? 'block' : 'none';
 }
 
-function showSuccess(name, r) {
-  document.getElementById('form-view').style.display = 'none';
-  document.getElementById('success-view').style.display = 'block';
-  document.getElementById('success-role-badge').textContent = r === 'student' ? '🎓 Student Account' : '🏢 Business Account';
-  document.getElementById('success-msg').textContent = r === 'student'
-    ? `Welcome, ${name}! Your student account is ready. Join our WhatsApp to receive your first task and start earning.`
-    : `Welcome, ${name}! Your business account is ready. Message us on WhatsApp to post your first task today.`;
-}
-
-function resetForm() {
-  document.getElementById('signup-form').reset();
-  document.getElementById('success-view').style.display = 'none';
-  document.getElementById('form-view').style.display    = 'block';
-  setRole('student');
-  clearAll();
-}
-
-document.getElementById('toggle-pw').addEventListener('click', () => {
-  const pw = document.getElementById('password');
-  const isText = pw.type === 'text';
+document.getElementById('toggle-pw').addEventListener('click', function() {
+  var pw = document.getElementById('password');
+  var isText = pw.type === 'text';
   pw.type = isText ? 'password' : 'text';
   document.getElementById('eye-icon').innerHTML = isText
     ? '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>'
     : '<path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>';
 });
 
-document.getElementById('signup-form').addEventListener('submit', async function(e) {
+document.getElementById('signup-form').addEventListener('submit', function(e) {
   e.preventDefault();
   clearAll();
 
-  const name     = document.getElementById('name').value.trim();
-  const email    = document.getElementById('email').value.trim();
-  const role     = document.getElementById('role-val').value;
-  const password = document.getElementById('password').value;
-  const terms    = document.getElementById('terms').checked;
+  var name     = document.getElementById('name').value.trim();
+  var email    = document.getElementById('email').value.trim();
+  var password = document.getElementById('password').value;
+  var terms    = document.getElementById('terms').checked;
 
-  let valid = true;
+  var valid = true;
   if (!name || name.length < 2) { setErr('name', 'name-err', 'Please enter your full name.'); valid = false; }
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!email) { setErr('email', 'email-err', 'Email is required.'); valid = false; }
   else if (!emailPattern.test(email)) { setErr('email', 'email-err', 'Enter a valid email address.'); valid = false; }
   if (!password) { setErr('password', 'password-err', 'Password is required.'); valid = false; }
@@ -297,41 +246,41 @@ document.getElementById('signup-form').addEventListener('submit', async function
 
   setLoading(true);
 
-  try {
-    const response = await fetch(`${API_URL}/signup`, {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify({ name, email, role, password }),
+  fetch(API_URL + '/signup', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: name, email: email, role: selectedRole, password: password })
+  })
+  .then(function(response) {
+    return response.json().then(function(data) {
+      return { ok: response.ok, data: data };
     });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      setLoading(false);
-      if (data.errors) {
-        if (data.errors.name)     setErr('name',     'name-err',     data.errors.name);
-        if (data.errors.email)    setErr('email',    'email-err',    data.errors.email);
-        if (data.errors.password) setErr('password', 'password-err', data.errors.password);
+  })
+  .then(function(result) {
+    setLoading(false);
+    if (!result.ok) {
+      if (result.data.errors) {
+        if (result.data.errors.name)     setErr('name',     'name-err',     result.data.errors.name);
+        if (result.data.errors.email)    setErr('email',    'email-err',    result.data.errors.email);
+        if (result.data.errors.password) setErr('password', 'password-err', result.data.errors.password);
       } else {
-        showToast(data.message || 'Something went wrong.', 'error');
+        showToast(result.data.message || 'Something went wrong.', 'error');
       }
       return;
     }
-
-    setLoading(false);
-    localStorage.setItem('hustl_user', JSON.stringify(data.user));
-    window.location.href = data.user.role === 'business' ? 'business.html' : 'student.html';
-
-  } catch (err) {
+    localStorage.setItem('hustl_user', JSON.stringify(result.data.user));
+    window.location.href = result.data.user.role === 'business' ? 'business.html' : 'student.html';
+  })
+  .catch(function(err) {
     setLoading(false);
     showToast('Cannot reach the server. Make sure backend is running.', 'error');
     console.error(err);
-  }
+  });
 });
 
-document.getElementById('name').addEventListener('input',     () => setErr('name',     'name-err',     ''));
-document.getElementById('email').addEventListener('input',    () => setErr('email',    'email-err',    ''));
-document.getElementById('password').addEventListener('input', () => setErr('password', 'password-err', ''));
+document.getElementById('name').addEventListener('input',     function(){ setErr('name',     'name-err',     ''); });
+document.getElementById('email').addEventListener('input',    function(){ setErr('email',    'email-err',    ''); });
+document.getElementById('password').addEventListener('input', function(){ setErr('password', 'password-err', ''); });
 </script>
 </body>
 </html>
