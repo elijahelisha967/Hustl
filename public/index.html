@@ -19,11 +19,10 @@ body{
   background:#F8FAFC;
   color:#0F172A;
   overflow-x:hidden;
-  cursor:none;
 }
 a{text-decoration:none;color:inherit}
 img{max-width:100%;display:block}
-button{border:none;cursor:none;font-family:inherit}
+button{border:none;cursor:pointer;font-family:inherit}
 
 /* ═══════════════════════════════════════════════════
    CSS CUSTOM PROPERTIES
@@ -56,10 +55,10 @@ button{border:none;cursor:none;font-family:inherit}
 /* ═══════════════════════════════════════════════════
    CUSTOM CURSOR
 ═══════════════════════════════════════════════════ */
-#cursor{
+/* {
   position:fixed;width:10px;height:10px;
   background:var(--g);border-radius:50%;
-  pointer-events:none;z-index:9999;
+  pointe#cursorr-events:none;z-index:9999;
   transform:translate(-50%,-50%);
   transition:transform .15s ease,width .2s ease,height .2s ease,background .2s ease;
 }
@@ -71,7 +70,7 @@ button{border:none;cursor:none;font-family:inherit}
   transition:transform .35s ease,width .25s ease,height .25s ease,opacity .25s ease;
 }
 body:has(a:hover) #cursor{transform:translate(-50%,-50%) scale(2.5);background:var(--g-light)}
-body:has(.btn:hover) #cursor{transform:translate(-50%,-50%) scale(0);opacity:0}
+body:has(.btn:hover) #cursor{transform:translate(-50%,-50%) scale(0);opacity:0} */
 
 /* ═══════════════════════════════════════════════════
    TYPOGRAPHY
@@ -111,7 +110,7 @@ section{padding:7rem 0}
   padding:.9rem 1.9rem;border-radius:100px;
   font-family:var(--font-d);font-weight:700;font-size:.92rem;
   letter-spacing:.01em;transition:all .22s ease;border:2px solid transparent;
-  cursor:none;
+  cursor:pointer;
 }
 .btn:hover{transform:translateY(-2px)}
 .btn-green{background:var(--g);color:var(--navy);box-shadow:var(--sh-g)}
@@ -148,7 +147,7 @@ section{padding:7rem 0}
 .nav-links a{color:rgba(255,255,255,.7);font-size:.88rem;font-weight:500;transition:color .2s}
 .nav-links a:hover{color:#fff}
 .nav-actions{display:flex;align-items:center;gap:.75rem}
-.hamburger{display:none;flex-direction:column;gap:5px;padding:4px;cursor:none}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:4px;cursor:pointer}
 .hamburger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:all .28s ease;display:block}
 .hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .hamburger.active span:nth-child(2){opacity:0;transform:scaleX(0)}
@@ -583,7 +582,7 @@ section{padding:7rem 0}
 .faq-item.open{border-color:rgba(34,197,94,.35)}
 .faq-q{
   display:flex;align-items:center;justify-content:space-between;gap:1rem;
-  padding:1.35rem 1.5rem;cursor:none;
+  padding:1.35rem 1.5rem;cursor:pointer;
   font-family:var(--font-d);font-weight:600;font-size:.95rem;color:var(--navy);
   transition:background .2s;user-select:none;
 }
@@ -676,7 +675,7 @@ footer{background:#070C14;color:rgba(255,255,255,.35);padding:2.25rem 0}
   box-shadow:0 4px 20px rgba(34,197,94,.4);
   opacity:0;pointer-events:none;
   transition:opacity .3s,transform .3s;
-  cursor:none;
+  cursor:pointer;
 }
 #top-btn.show{opacity:1;pointer-events:all}
 #top-btn:hover{transform:scale(1.12) translateY(-2px)}
@@ -722,9 +721,9 @@ footer{background:#070C14;color:rgba(255,255,255,.35);padding:2.25rem 0}
 </head>
 <body>
 
-<!-- CURSOR -->
+<!-- CURSOR
 <div id="cursor"></div>
-<div id="cursor-ring"></div>
+<div id="cursor-ring"></div> -->
 
 <!-- ═══════════ NAVBAR ═══════════ -->
 <nav id="nav">
@@ -1357,21 +1356,21 @@ footer{background:#070C14;color:rgba(255,255,255,.35);padding:2.25rem 0}
 <!-- ═══════════ JAVASCRIPT ═══════════ -->
 <script>
 /* ── CUSTOM CURSOR ── */
-const cur = document.getElementById('cursor');
-const ring = document.getElementById('cursor-ring');
-let mx = 0, my = 0, rx = 0, ry = 0;
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  cur.style.left = mx + 'px'; cur.style.top = my + 'px';
-});
-(function animRing(){
-  rx += (mx - rx) * 0.12;
-  ry += (my - ry) * 0.12;
-  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-  requestAnimationFrame(animRing);
-})();
-document.addEventListener('mouseleave', () => { cur.style.opacity = 0; ring.style.opacity = 0; });
-document.addEventListener('mouseenter', () => { cur.style.opacity = 1; ring.style.opacity = 1; });
+// const cur = document.getElementById('cursor');
+// const ring = document.getElementById('cursor-ring');
+// let mx = 0, my = 0, rx = 0, ry = 0;
+// document.addEventListener('mousemove', e => {
+//   mx = e.clientX; my = e.clientY;
+//   cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+// });
+// (function animRing(){
+//   rx += (mx - rx) * 0.12;
+//   ry += (my - ry) * 0.12;
+//   ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+//   requestAnimationFrame(animRing);
+// })();
+// document.addEventListener('mouseleave', () => { cur.style.opacity = 0; ring.style.opacity = 0; });
+// document.addEventListener('mouseenter', () => { cur.style.opacity = 1; ring.style.opacity = 1; });
 
 /* ── NAV SCROLL EFFECT ── */
 const nav = document.getElementById('nav');
