@@ -324,7 +324,7 @@ body{
 </div>
 
 <script>
-const API_URL = 'https://hustl.up.railway.app';
+const API_URL = '';
 
 function showToast(msg, type = 'error') {
   const t = document.getElementById('toast');
@@ -392,7 +392,7 @@ document.getElementById('login-form').addEventListener('submit', async function(
   setLoading(true);
 
   try {
-    const res  = await fetch(`${API_URL}/login`, {
+    const res  = await fetch(`${API_URL}/api/login`, {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
       body:    JSON.stringify({ email, password }),

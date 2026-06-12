@@ -174,7 +174,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#0F172A;color:#F8FAFC
 </div>
 
 <script>
-const API_URL = 'https://hustl.up.railway.app';
+const API_URL = '';
 let selectedRole = 'student';
 
 function setRole(r) {
@@ -246,7 +246,7 @@ document.getElementById('signup-form').addEventListener('submit', function(e) {
 
   setLoading(true);
 
-  fetch(API_URL + '/signup', {
+  fetch(API_URL + '/api/signup', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ name: name, email: email, role: selectedRole, password: password })
