@@ -9,6 +9,7 @@
     { "src": "/api/signup", "dest": "/api/signup.js" },
     { "src": "/api/login", "dest": "/api/login.js" },
     { "src": "/api/profile", "dest": "/api/profile.js" },
+    { "src": "/api/(.*)", "dest": "/server.js" },
     { "src": "/(.*\\.html)", "dest": "/public/$1" },
     { "src": "/", "dest": "/public/index.html" },
     { "src": "/(.*)", "dest": "/public/$1" }
