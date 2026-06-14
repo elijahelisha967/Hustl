@@ -28,10 +28,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#0F172A;color:#F8FAFC
   position:fixed;top:0;left:0;height:100vh;z-index:100;
   transition:transform .3s ease;
 }
-.sidebar-logo{
-  font-family:var(--font-d);font-weight:800;font-size:1.65rem;
-  color:#fff;letter-spacing:-.04em;text-decoration:none;margin-bottom:2.5rem;display:block;
-}
+.sidebar-logo{font-family:var(--font-d);font-weight:800;font-size:1.65rem;color:#fff;letter-spacing:-.04em;text-decoration:none;margin-bottom:2.5rem;display:block;}
 .sidebar-logo em{color:var(--g);font-style:normal}
 .nav-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.25);margin-bottom:.6rem;padding:0 .6rem}
 .nav-item{
@@ -46,16 +43,9 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#0F172A;color:#F8FAFC
 .nav-item svg{flex-shrink:0;opacity:.7}
 .nav-item.active svg{opacity:1}
 .sidebar-spacer{flex:1}
-.sidebar-user{
-  background:rgba(255,255,255,.04);border:1px solid var(--border);
-  border-radius:var(--r);padding:.85rem;display:flex;align-items:center;gap:.75rem;
-}
-.su-avatar{
-  width:34px;height:34px;border-radius:50%;
-  background:linear-gradient(135deg,var(--g),var(--g-dark));
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--font-d);font-weight:800;font-size:.9rem;color:var(--navy);flex-shrink:0;
-}
+.sidebar-user{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--r);padding:.85rem;display:flex;align-items:center;gap:.75rem;}
+.su-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--g),var(--g-dark));display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-weight:800;font-size:.9rem;color:var(--navy);flex-shrink:0;overflow:hidden;}
+.su-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
 .su-info{min-width:0}
 .su-name{font-size:.82rem;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .su-role{font-size:.7rem;color:var(--g);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
@@ -68,41 +58,21 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#0F172A;color:#F8FAFC
 .topbar-left h1{font-family:var(--font-d);font-weight:800;font-size:1.6rem;letter-spacing:-.02em}
 .topbar-left p{color:var(--slate);font-size:.88rem;margin-top:.2rem}
 .topbar-right{display:flex;align-items:center;gap:.75rem}
-.badge-student{
-  background:var(--g-dim);color:var(--g);
-  font-size:.75rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
-  padding:.35rem .85rem;border-radius:100px;border:1px solid rgba(34,197,94,.25);
-}
-.btn-logout{
-  background:rgba(255,255,255,.05);border:1px solid var(--border);
-  color:rgba(255,255,255,.4);font-size:.8rem;font-weight:600;
-  padding:.4rem .9rem;border-radius:8px;cursor:pointer;transition:all .2s;
-}
+.badge-student{background:var(--g-dim);color:var(--g);font-size:.75rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.35rem .85rem;border-radius:100px;border:1px solid rgba(34,197,94,.25);}
+.btn-logout{background:rgba(255,255,255,.05);border:1px solid var(--border);color:rgba(255,255,255,.4);font-size:.8rem;font-weight:600;padding:.4rem .9rem;border-radius:8px;cursor:pointer;transition:all .2s;}
 .btn-logout:hover{background:rgba(239,68,68,.1);border-color:rgba(239,68,68,.3);color:#FCA5A5}
 
 /* ── STATS ROW ── */
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.75rem}
-.stat-card{
-  background:#1a2236;border:1px solid var(--border);border-radius:var(--r-lg);
-  padding:1.35rem 1.5rem;position:relative;overflow:hidden;
-  padding-right:3.5rem;
-}
-.stat-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:var(--g);opacity:.5;border-radius:3px 3px 0 0;
-}
+.stat-card{background:#1a2236;border:1px solid var(--border);border-radius:var(--r-lg);padding:1.35rem 1.5rem;position:relative;overflow:hidden;padding-right:3.5rem;}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--g);opacity:.5;border-radius:3px 3px 0 0;}
 .stat-card.amber::before{background:var(--amber)}
 .stat-card.blue::before{background:#60A5FA}
 .stat-card.purple::before{background:#A78BFA}
 .sc-label{font-size:.73rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:.6rem}
 .sc-value{font-family:var(--font-d);font-weight:800;font-size:1.75rem;color:#fff;line-height:1}
 .sc-sub{font-size:.75rem;color:rgba(255,255,255,.3);margin-top:.35rem}
-.sc-icon{
-  position:absolute;top:1.1rem;right:1.1rem;
-  width:32px;height:32px;border-radius:8px;
-  display:flex;align-items:center;justify-content:center;
-  background:var(--g-dim);
-}
+.sc-icon{position:absolute;top:1.1rem;right:1.1rem;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:var(--g-dim);}
 .sc-icon.amber{background:var(--amber-dim)}
 .sc-icon.blue{background:rgba(96,165,250,.12)}
 .sc-icon.purple{background:rgba(167,139,250,.12)}
@@ -119,42 +89,18 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#0F172A;color:#F8FAFC
 .tag-amber{background:var(--amber-dim);color:var(--amber);border:1px solid rgba(245,158,11,.2)}
 
 /* ── WA CTA ── */
-.wa-cta{
-  background:linear-gradient(135deg,#0a2c14 0%,#0d1f2b 100%);
-  border:1px solid rgba(34,197,94,.2);border-radius:var(--r-lg);
-  padding:2rem;text-align:center;position:relative;overflow:hidden;margin-bottom:1.25rem;
-}
-.wa-cta::before{
-  content:'';position:absolute;inset:0;pointer-events:none;
-  background-image:linear-gradient(rgba(34,197,94,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(34,197,94,.04) 1px,transparent 1px);
-  background-size:30px 30px;
-}
+.wa-cta{background:linear-gradient(135deg,#0a2c14 0%,#0d1f2b 100%);border:1px solid rgba(34,197,94,.2);border-radius:var(--r-lg);padding:2rem;text-align:center;position:relative;overflow:hidden;margin-bottom:1.25rem;}
+.wa-cta::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(34,197,94,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(34,197,94,.04) 1px,transparent 1px);background-size:30px 30px;}
 .wa-cta-inner{position:relative;z-index:1}
-.wa-icon{
-  width:56px;height:56px;border-radius:16px;
-  background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);
-  display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;
-}
+.wa-icon{width:56px;height:56px;border-radius:16px;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;}
 .wa-cta h3{font-family:var(--font-d);font-weight:800;font-size:1.25rem;margin-bottom:.5rem}
 .wa-cta p{color:rgba(255,255,255,.45);font-size:.85rem;max-width:340px;margin:0 auto 1.5rem;line-height:1.6}
-.btn-wa{
-  display:inline-flex;align-items:center;gap:.6rem;
-  background:#25D366;color:#fff;
-  font-family:var(--font-d);font-weight:800;font-size:.95rem;
-  padding:.85rem 2rem;border-radius:100px;text-decoration:none;
-  box-shadow:0 6px 24px rgba(37,211,102,.3);transition:all .22s;
-  border:none;cursor:pointer;
-}
+.btn-wa{display:inline-flex;align-items:center;gap:.6rem;background:#25D366;color:#fff;font-family:var(--font-d);font-weight:800;font-size:.95rem;padding:.85rem 2rem;border-radius:100px;text-decoration:none;box-shadow:0 6px 24px rgba(37,211,102,.3);transition:all .22s;border:none;cursor:pointer;}
 .btn-wa:hover{background:#1ebe5a;box-shadow:0 10px 36px rgba(37,211,102,.45);transform:translateY(-2px)}
 
 /* ── TASK LIST ── */
 .task-list{display:flex;flex-direction:column;gap:.75rem}
-.task-item{
-  background:rgba(255,255,255,.03);border:1px solid var(--border);
-  border-radius:var(--r);padding:1rem 1.1rem;
-  display:flex;align-items:center;gap:1rem;
-  transition:background .2s;
-}
+.task-item{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.1rem;display:flex;align-items:center;gap:1rem;transition:background .2s;}
 .task-item:hover{background:rgba(255,255,255,.05)}
 .task-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .task-dot.green{background:var(--g);box-shadow:0 0 8px rgba(34,197,94,.5)}
@@ -168,29 +114,39 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#0F172A;color:#F8FAFC
 
 /* ── HOW IT WORKS ── */
 .steps{display:flex;flex-direction:column;gap:.9rem}
-.step-item{
-  display:flex;align-items:flex-start;gap:.9rem;
-  padding:.9rem 1rem;background:rgba(255,255,255,.02);border-radius:var(--r);
-}
-.step-num{
-  width:28px;height:28px;border-radius:8px;flex-shrink:0;
-  background:var(--g-dim);color:var(--g);border:1px solid rgba(34,197,94,.2);
-  font-family:var(--font-d);font-weight:800;font-size:.8rem;
-  display:flex;align-items:center;justify-content:center;
-}
+.step-item{display:flex;align-items:flex-start;gap:.9rem;padding:.9rem 1rem;background:rgba(255,255,255,.02);border-radius:var(--r);}
+.step-num{width:28px;height:28px;border-radius:8px;flex-shrink:0;background:var(--g-dim);color:var(--g);border:1px solid rgba(34,197,94,.2);font-family:var(--font-d);font-weight:800;font-size:.8rem;display:flex;align-items:center;justify-content:center;}
 .step-text strong{font-size:.86rem;color:#fff;display:block;margin-bottom:.15rem}
 .step-text span{font-size:.78rem;color:rgba(255,255,255,.35)}
 
-/* ── PROFILE CARD ── */
-.profile-info{display:flex;flex-direction:column;gap:.85rem}
-.pi-row{display:flex;justify-content:space-between;align-items:center;padding:.65rem 0;border-bottom:1px solid var(--border)}
-.pi-row:last-child{border-bottom:none}
+/* ── PROFILE PAGE ── */
+.profile-wrap{max-width:680px}
+.profile-hero{background:#1a2236;border:1px solid var(--border);border-radius:var(--r-lg);padding:2rem;display:flex;align-items:center;gap:1.5rem;margin-bottom:1.25rem;}
+.profile-avatar-lg{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--g),var(--g-dark));display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-weight:800;font-size:1.8rem;color:var(--navy);flex-shrink:0;overflow:hidden;border:3px solid rgba(34,197,94,.3);}
+.profile-avatar-lg img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.profile-hero-info h2{font-family:var(--font-d);font-weight:800;font-size:1.4rem;margin-bottom:.25rem}
+.profile-hero-info p{font-size:.85rem;color:var(--slate)}
+.profile-hero-info .ph-school{color:var(--g);font-size:.8rem;font-weight:600;margin-top:.3rem}
+.profile-section{background:#1a2236;border:1px solid var(--border);border-radius:var(--r-lg);padding:1.5rem;margin-bottom:1.25rem;}
+.ps-title{font-family:var(--font-d);font-weight:800;font-size:.95rem;margin-bottom:1.1rem;padding-bottom:.75rem;border-bottom:1px solid var(--border);}
+.pi-row{display:flex;justify-content:space-between;align-items:center;padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.pi-row:last-child{border-bottom:none;padding-bottom:0}
 .pi-label{font-size:.78rem;color:rgba(255,255,255,.35)}
 .pi-val{font-size:.86rem;font-weight:600;color:#fff}
+.skills-display{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.25rem}
+.skill-tag{background:var(--g-dim);color:var(--g);border:1px solid rgba(34,197,94,.2);font-size:.75rem;font-weight:600;padding:.35rem .75rem;border-radius:100px;}
+.bank-masked{font-family:monospace;letter-spacing:.05em;color:#fff}
+.edit-btn{background:rgba(255,255,255,.05);border:1px solid var(--border);color:rgba(255,255,255,.5);font-size:.8rem;font-weight:600;padding:.45rem 1rem;border-radius:8px;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;}
+.edit-btn:hover{background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.3);color:var(--g)}
+.profile-empty{text-align:center;padding:2rem;color:var(--slate);font-size:.88rem}
+.profile-empty a{color:var(--g);font-weight:600;text-decoration:none}
 
-/* ── MOBILE MENU ── */
+/* ── SECTION TOGGLE ── */
+.page-section{display:none}
+.page-section.active{display:block}
+
+/* ── MOBILE ── */
 .hamburger{display:none;position:fixed;top:1rem;left:1rem;z-index:200;background:var(--navy-2);border:1px solid var(--border);border-radius:8px;padding:.5rem;cursor:pointer;color:#fff}
-
 @media(max-width:900px){
   .sidebar{transform:translateX(-100%)}
   .sidebar.open{transform:translateX(0)}
@@ -216,22 +172,22 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#0F172A;color:#F8FAFC
   <a href="index.html" class="sidebar-logo">Hust<em>l</em></a>
 
   <div class="nav-label">Menu</div>
-  <a class="nav-item active" href="comingsoon.html">
+  <button class="nav-item active" id="nav-dashboard" onclick="showSection('dashboard')">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
     Dashboard
-  </a>
-  <a class="nav-item" href="comingsoon.html">
+  </button>
+  <button class="nav-item" id="nav-tasks" onclick="showSection('tasks')">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
     My Tasks
-  </a>
-  <a class="nav-item" href="comingsoon.html">
+  </button>
+  <button class="nav-item" id="nav-earnings" onclick="showSection('earnings')">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 100 7h5a3.5 3.5 0 110 7H6"/></svg>
     Earnings
-  </a>
-  <a class="nav-item" href="comingsoon.html">
+  </button>
+  <button class="nav-item" id="nav-profile" onclick="showSection('profile')">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
     Profile
-  </a>
+  </button>
 
   <div class="sidebar-spacer"></div>
 
@@ -251,7 +207,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#0F172A;color:#F8FAFC
   <div class="topbar">
     <div class="topbar-left">
       <h1>Hey, <span id="first-name">there</span> 👋</h1>
-      <p>Welcome to your student dashboard</p>
+      <p id="topbar-sub">Welcome to your student dashboard</p>
     </div>
     <div class="topbar-right">
       <span class="badge-student">Student</span>
@@ -259,176 +215,297 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#0F172A;color:#F8FAFC
     </div>
   </div>
 
-  <!-- STATS -->
-  <div class="stats-row">
-    <div class="stat-card">
-      <div class="sc-icon">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 100 7h5a3.5 3.5 0 110 7H6"/></svg>
-      </div>
-      <div class="sc-label">Total Earned</div>
-      <div class="sc-value">₦0</div>
-      <div class="sc-sub">Start completing tasks</div>
-    </div>
-    <div class="stat-card amber">
-      <div class="sc-icon amber">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-      </div>
-      <div class="sc-label">Tasks Done</div>
-      <div class="sc-value">0</div>
-      <div class="sc-sub">Join WhatsApp to start</div>
-    </div>
-    <div class="stat-card blue">
-      <div class="sc-icon blue">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-      </div>
-      <div class="sc-label">Active Tasks</div>
-      <div class="sc-value">0</div>
-      <div class="sc-sub">Check WhatsApp group</div>
-    </div>
-    <div class="stat-card purple">
-      <div class="sc-icon purple">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      </div>
-      <div class="sc-label">Your Rating</div>
-      <div class="sc-value">—</div>
-      <div class="sc-sub">Earn after 1st task</div>
-    </div>
-  </div>
+  <!-- ════ DASHBOARD SECTION ════ -->
+  <div class="page-section active" id="section-dashboard">
 
-  <!-- WA CTA (FULL WIDTH) -->
-  <div class="wa-cta">
-    <div class="wa-cta-inner">
-      <div class="wa-icon">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="#22C55E"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="sc-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 100 7h5a3.5 3.5 0 110 7H6"/></svg>
+        </div>
+        <div class="sc-label">Total Earned</div>
+        <div class="sc-value">₦0</div>
+        <div class="sc-sub">Start completing tasks</div>
       </div>
-      <h3>Tasks are live on WhatsApp 🔥</h3>
-      <p>Join the Hustl student group to see available tasks, pick what you want, and get paid. New tasks drop daily.</p>
-      <a href="https://chat.whatsapp.com/K0U6SKyAUOa9wOXlcuYHIU" class="btn-wa" target="_blank" rel="noopener">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Join Tasks WhatsApp Group
+      <div class="stat-card amber">
+        <div class="sc-icon amber">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <div class="sc-label">Tasks Done</div>
+        <div class="sc-value">0</div>
+        <div class="sc-sub">Join WhatsApp to start</div>
+      </div>
+      <div class="stat-card blue">
+        <div class="sc-icon blue">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="sc-label">Active Tasks</div>
+        <div class="sc-value">0</div>
+        <div class="sc-sub">Check WhatsApp group</div>
+      </div>
+      <div class="stat-card purple">
+        <div class="sc-icon purple">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="sc-label">Your Rating</div>
+        <div class="sc-value">—</div>
+        <div class="sc-sub">Earn after 1st task</div>
+      </div>
+    </div>
+
+    <div class="wa-cta">
+      <div class="wa-cta-inner">
+        <div class="wa-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="#22C55E"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </div>
+        <h3>Tasks are live on WhatsApp 🔥</h3>
+        <p>Join the Hustl student group to see available tasks, pick what you want, and get paid. New tasks drop daily.</p>
+        <a href="https://chat.whatsapp.com/K0U6SKyAUOa9wOXlcuYHIU" class="btn-wa" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Join Tasks WhatsApp Group
+        </a>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">
+          <span class="card-title">Available Tasks</span>
+          <span class="card-tag tag-green">WhatsApp Only</span>
+        </div>
+        <div class="task-list">
+          <div class="task-item">
+            <div class="task-dot green"></div>
+            <div class="task-info"><div class="task-name">Follow & Like 5 Instagram Posts</div><div class="task-meta">Lagos Business · 10 mins</div></div>
+            <div class="task-pay">₦500</div>
+          </div>
+          <div class="task-item">
+            <div class="task-dot green"></div>
+            <div class="task-info"><div class="task-name">Leave Google Review</div><div class="task-meta">Abuja Restaurant · 5 mins</div></div>
+            <div class="task-pay">₦300</div>
+          </div>
+          <div class="task-item">
+            <div class="task-dot amber"></div>
+            <div class="task-info"><div class="task-name">Share Flyer in 3 WhatsApp Groups</div><div class="task-meta">Fashion Brand · 8 mins</div></div>
+            <div class="task-pay">₦700</div>
+          </div>
+          <div class="task-item" style="opacity:.4">
+            <div class="task-dot blue"></div>
+            <div class="task-info"><div class="task-name">More tasks in WhatsApp group...</div><div class="task-meta">Join to see all live tasks</div></div>
+            <div class="task-lock"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>Join</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <span class="card-title">How It Works</span>
+          <span class="card-tag tag-amber">4 Steps</span>
+        </div>
+        <div class="steps">
+          <div class="step-item"><div class="step-num">1</div><div class="step-text"><strong>Join the WhatsApp Group</strong><span>Click the green button above to join the student tasks group</span></div></div>
+          <div class="step-item"><div class="step-num">2</div><div class="step-text"><strong>Pick a Task</strong><span>Browse tasks posted daily. Comment "I'll do this" to claim one</span></div></div>
+          <div class="step-item"><div class="step-num">3</div><div class="step-text"><strong>Complete & Submit Proof</strong><span>Do the task and send a screenshot to Hustl on WhatsApp</span></div></div>
+          <div class="step-item"><div class="step-num">4</div><div class="step-text"><strong>Get Paid Instantly</strong><span>Payment sent to your account within 2 hours of verification</span></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /dashboard section -->
+
+  <!-- ════ MY TASKS SECTION ════ -->
+  <div class="page-section" id="section-tasks">
+    <div class="card" style="text-align:center;padding:3rem">
+      <div style="font-size:2.5rem;margin-bottom:1rem">📋</div>
+      <div style="font-family:var(--font-d);font-weight:800;font-size:1.2rem;margin-bottom:.5rem">No tasks yet</div>
+      <div style="color:var(--slate);font-size:.88rem;margin-bottom:1.5rem">Tasks you pick up will appear here. Join the WhatsApp group to get started.</div>
+      <a href="https://chat.whatsapp.com/K0U6SKyAUOa9wOXlcuYHIU" class="btn-wa" target="_blank" style="display:inline-flex">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Join WhatsApp Group
       </a>
     </div>
   </div>
 
-  <!-- BOTTOM GRID -->
-  <div class="grid-2">
-
-    <!-- AVAILABLE TASKS PREVIEW -->
-    <div class="card">
-      <div class="card-head">
-        <span class="card-title">Available Tasks</span>
-        <span class="card-tag tag-green">WhatsApp Only</span>
-      </div>
-      <div class="task-list">
-        <div class="task-item">
-          <div class="task-dot green"></div>
-          <div class="task-info">
-            <div class="task-name">Follow & Like 5 Instagram Posts</div>
-            <div class="task-meta">Lagos Business · 10 mins</div>
-          </div>
-          <div class="task-pay">₦500</div>
-        </div>
-        <div class="task-item">
-          <div class="task-dot green"></div>
-          <div class="task-info">
-            <div class="task-name">Leave Google Review</div>
-            <div class="task-meta">Abuja Restaurant · 5 mins</div>
-          </div>
-          <div class="task-pay">₦300</div>
-        </div>
-        <div class="task-item">
-          <div class="task-dot amber"></div>
-          <div class="task-info">
-            <div class="task-name">Share Flyer in 3 WhatsApp Groups</div>
-            <div class="task-meta">Fashion Brand · 8 mins</div>
-          </div>
-          <div class="task-pay">₦700</div>
-        </div>
-        <div class="task-item" style="opacity:.4">
-          <div class="task-dot blue"></div>
-          <div class="task-info">
-            <div class="task-name">More tasks in WhatsApp group...</div>
-            <div class="task-meta">Join to see all live tasks</div>
-          </div>
-          <div class="task-lock">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-            Join
-          </div>
-        </div>
-      </div>
+  <!-- ════ EARNINGS SECTION ════ -->
+  <div class="page-section" id="section-earnings">
+    <div class="card" style="text-align:center;padding:3rem">
+      <div style="font-size:2.5rem;margin-bottom:1rem">💰</div>
+      <div style="font-family:var(--font-d);font-weight:800;font-size:1.2rem;margin-bottom:.5rem">₦0 earned so far</div>
+      <div style="color:var(--slate);font-size:.88rem">Complete your first task to start earning. Payments hit your account within 2 hours.</div>
     </div>
+  </div>
 
-    <!-- HOW IT WORKS -->
-    <div class="card">
-      <div class="card-head">
-        <span class="card-title">How It Works</span>
-        <span class="card-tag tag-amber">4 Steps</span>
-      </div>
-      <div class="steps">
-        <div class="step-item">
-          <div class="step-num">1</div>
-          <div class="step-text">
-            <strong>Join the WhatsApp Group</strong>
-            <span>Click the green button above to join the student tasks group</span>
-          </div>
+  <!-- ════ PROFILE SECTION ════ -->
+  <div class="page-section" id="section-profile">
+    <div class="profile-wrap">
+
+      <!-- HERO -->
+      <div class="profile-hero">
+        <div class="profile-avatar-lg" id="profile-avatar-lg">E</div>
+        <div class="profile-hero-info">
+          <h2 id="profile-full-name">Loading...</h2>
+          <p id="profile-email-display" style="color:var(--slate);font-size:.82rem"></p>
+          <div class="ph-school" id="profile-school-display"></div>
         </div>
-        <div class="step-item">
-          <div class="step-num">2</div>
-          <div class="step-text">
-            <strong>Pick a Task</strong>
-            <span>Browse tasks posted daily. Comment "I'll do this" to claim one</span>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-num">3</div>
-          <div class="step-text">
-            <strong>Complete & Submit Proof</strong>
-            <span>Do the task and send a screenshot to Hustl community on WhatsApp</span>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-num">4</div>
-          <div class="step-text">
-            <strong>Get Paid Instantly</strong>
-            <span>Payment sent to your account within 2 hours of verification</span>
-          </div>
+        <div style="margin-left:auto">
+          <button class="edit-btn" onclick="window.location.href='onboarding.html'">Edit Profile</button>
         </div>
       </div>
+
+      <!-- PERSONAL INFO -->
+      <div class="profile-section">
+        <div class="ps-title">Personal Info</div>
+        <div class="pi-row"><span class="pi-label">Full Name</span><span class="pi-val" id="pi-name">—</span></div>
+        <div class="pi-row"><span class="pi-label">Email</span><span class="pi-val" id="pi-email">—</span></div>
+        <div class="pi-row"><span class="pi-label">School</span><span class="pi-val" id="pi-school">—</span></div>
+        <div class="pi-row"><span class="pi-label">Department</span><span class="pi-val" id="pi-dept">—</span></div>
+        <div class="pi-row"><span class="pi-label">Year</span><span class="pi-val" id="pi-year">—</span></div>
+        <div class="pi-row"><span class="pi-label">Member since</span><span class="pi-val" id="pi-joined">—</span></div>
+      </div>
+
+      <!-- SKILLS -->
+      <div class="profile-section">
+        <div class="ps-title">Your Skills</div>
+        <div class="skills-display" id="profile-skills">
+          <span style="color:var(--slate);font-size:.85rem">No skills added yet</span>
+        </div>
+      </div>
+
+      <!-- BANK DETAILS -->
+      <div class="profile-section">
+        <div class="ps-title">Bank Details</div>
+        <div class="pi-row"><span class="pi-label">Bank</span><span class="pi-val" id="pi-bank">—</span></div>
+        <div class="pi-row"><span class="pi-label">Account Number</span><span class="pi-val bank-masked" id="pi-account">—</span></div>
+        <div class="pi-row"><span class="pi-label">Account Name</span><span class="pi-val" id="pi-accname">—</span></div>
+      </div>
+
     </div>
-
   </div>
 
 </div><!-- /main -->
 
 <script>
-// Load user from localStorage
-window.addEventListener('DOMContentLoaded', () => {
-  const raw = localStorage.getItem('hustl_user');
-  if (!raw) { window.location.href = 'login.html'; return; }
+const BACKEND = 'https://hustl-pi.vercel.app';
+
+const SKILL_LABELS = {
+  social_media:'Social Media',graphic_design:'Graphic Design',video_editing:'Video Editing',
+  copywriting:'Content Writing',data_entry:'Data Entry',delivery:'Delivery & Errands',
+  event_staffing:'Event Staffing',tutoring:'Tutoring',research:'Research & Writing',
+  transcription:'Transcription',customer_service:'Customer Service',photography:'Photography'
+};
+
+let profileData = null;
+
+// ── AUTH CHECK ──
+window.addEventListener('DOMContentLoaded', async () => {
+  const raw   = localStorage.getItem('hustl_user');
+  const token = localStorage.getItem('hustl_token');
+
+  if (!raw || !token) { window.location.href = 'login.html'; return; }
 
   const user = JSON.parse(raw);
-
-  // If user is business, redirect to business dashboard
-  if (user.role === 'business') {
-    window.location.href = 'business-dashboard.html';
-    return;
+  if (user.role === 'business') { window.location.href = 'business.html'; return; }
+  if (!localStorage.getItem('hustl_onboarded') && !user.onboardingComplete) {
+    window.location.href = 'onboarding.html'; return;
   }
 
+  // Set basic UI from localStorage immediately
   const firstName = (user.name || 'Student').split(' ')[0];
   const initials  = (user.name || 'S').split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase();
+  document.getElementById('first-name').textContent  = firstName;
+  document.getElementById('sb-name').textContent     = user.name || user.email;
+  document.getElementById('sb-avatar').textContent   = initials;
 
-  document.getElementById('first-name').textContent = firstName;
-  document.getElementById('sb-name').textContent    = user.name || user.email;
-  document.getElementById('sb-avatar').textContent  = initials;
+  // Fetch full profile from backend
+  try {
+    const res  = await fetch(`${BACKEND}/api/profile`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    const data = await res.json();
+    if (data.success) {
+      profileData = data.user;
+      populateProfile(data.user);
+    }
+  } catch (e) {
+    console.warn('Could not load profile:', e);
+  }
 });
 
-// Logout
+function populateProfile(u) {
+  // Sidebar avatar with photo
+  const sbAvatar = document.getElementById('sb-avatar');
+  if (u.profilePhoto) {
+    sbAvatar.innerHTML = `<img src="${u.profilePhoto}" alt="${u.name}"/>`;
+  } else {
+    sbAvatar.textContent = (u.name||'S').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  }
+
+  // Profile hero
+  const lgAvatar = document.getElementById('profile-avatar-lg');
+  if (u.profilePhoto) {
+    lgAvatar.innerHTML = `<img src="${u.profilePhoto}" alt="${u.name}"/>`;
+  } else {
+    lgAvatar.textContent = (u.name||'S').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  }
+
+  document.getElementById('profile-full-name').textContent    = u.name || '—';
+  document.getElementById('profile-email-display').textContent = u.email || '';
+  document.getElementById('profile-school-display').textContent = u.school ? `📍 ${u.school}` : '';
+
+  // Personal info rows
+  document.getElementById('pi-name').textContent   = u.name       || '—';
+  document.getElementById('pi-email').textContent  = u.email      || '—';
+  document.getElementById('pi-school').textContent = u.school     || '—';
+  document.getElementById('pi-dept').textContent   = u.department || '—';
+  document.getElementById('pi-year').textContent   = u.yearOfStudy ? `${u.yearOfStudy} Level` : '—';
+  document.getElementById('pi-joined').textContent = u.dateJoined
+    ? new Date(u.dateJoined).toLocaleDateString('en-NG', { day:'numeric', month:'long', year:'numeric' })
+    : '—';
+
+  // Skills
+  const skillsEl = document.getElementById('profile-skills');
+  if (u.skills && u.skills.length > 0) {
+    skillsEl.innerHTML = u.skills.map(s =>
+      `<span class="skill-tag">${SKILL_LABELS[s] || s}</span>`
+    ).join('');
+  }
+
+  // Bank details
+  document.getElementById('pi-bank').textContent    = u.bankName    || '—';
+  document.getElementById('pi-accname').textContent = u.accountName || '—';
+  if (u.accountNumber) {
+    const masked = '••••••' + u.accountNumber.slice(-4);
+    document.getElementById('pi-account').textContent = masked;
+  }
+}
+
+// ── SECTION SWITCHER ──
+function showSection(name) {
+  // Hide all sections
+  document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+  document.getElementById(`section-${name}`).classList.add('active');
+  document.getElementById(`nav-${name}`).classList.add('active');
+
+  // Update topbar subtitle
+  const subs = { dashboard:'Welcome to your student dashboard', tasks:'Tasks you\'ve picked up', earnings:'Your earnings history', profile:'Your profile & settings' };
+  document.getElementById('topbar-sub').textContent = subs[name] || '';
+
+  // Close mobile sidebar
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+// ── LOGOUT ──
 document.getElementById('logout-btn').addEventListener('click', () => {
   localStorage.removeItem('hustl_user');
+  localStorage.removeItem('hustl_token');
+  localStorage.removeItem('hustl_onboarded');
   window.location.href = 'login.html';
 });
 
-// Mobile sidebar
+// ── MOBILE SIDEBAR ──
 const hamburger = document.getElementById('hamburger');
 const sidebar   = document.getElementById('sidebar');
 const overlay   = document.getElementById('overlay');
