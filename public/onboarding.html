@@ -377,13 +377,12 @@
       <label>Year of Study</label>
       <select id="yearOfStudy">
         <option value="" disabled selected>Select year</option>
-        <option value="pre">Pre-University / JUPEB / IJMB</option>
-<option value="100">100 Level</option>
-<option value="200">200 Level</option>
-<option value="300">300 Level</option>
-<option value="400">400 Level</option>
-<option value="500">500 Level</option>
-<option value="postgrad">Postgraduate</option>
+        <option value="100">100 Level</option>
+        <option value="200">200 Level</option>
+        <option value="300">300 Level</option>
+        <option value="400">400 Level</option>
+        <option value="500">500 Level</option>
+        <option value="postgrad">Postgraduate</option>
       </select>
     </div>
 
@@ -490,7 +489,7 @@
 </div><!-- /card -->
 
 <script>
-  const BACKEND = 'https://hustl-pi.vercel.app';
+  const BACKEND = 'https://hustl.up.railway.app';
 
   const SKILLS = [
     { id: 'social_media',   label: 'Social Media',     icon: '📱' },
@@ -623,7 +622,7 @@
     };
 
     try {
-      const res = await fetch(`${BACKEND}/api/users/onboarding`, {
+      const res = await fetch(`${BACKEND}/api/onboarding`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -659,7 +658,7 @@
 
   function joinWhatsApp() {
     // Replace with your actual WhatsApp group link
-    window.open('https://chat.whatsapp.com/K0U6SKyAUOa9wOXlcuYHIU', '_blank');
+    window.open('https://chat.whatsapp.com/YOUR_GROUP_LINK', '_blank');
   }
 
   function goToDashboard() {
