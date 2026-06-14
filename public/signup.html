@@ -269,7 +269,12 @@ document.getElementById('signup-form').addEventListener('submit', function(e) {
       return;
     }
     localStorage.setItem('hustl_user', JSON.stringify(result.data.user));
-    window.location.href = result.data.user.role === 'business' ? 'business.html' : 'student.html';
+    localStorage.setItem('hustl_token', result.data.token);
+    if (result.data.user.role === 'business') {
+      window.location.href = 'business.html';
+    } else {
+      window.location.href = 'onboarding.html';
+    }
   })
   .catch(function(err) {
     setLoading(false);

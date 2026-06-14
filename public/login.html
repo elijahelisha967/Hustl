@@ -408,8 +408,9 @@ document.getElementById('login-form').addEventListener('submit', async function(
       return;
     }
 
-    // Save user info
+    // Save user info + token
     localStorage.setItem('hustl_user', JSON.stringify(data.user));
+    localStorage.setItem('hustl_token', data.token);
     if (document.getElementById('remember').checked) {
       localStorage.setItem('hustl_remember', email);
     } else {
@@ -418,10 +419,16 @@ document.getElementById('login-form').addEventListener('submit', async function(
 
     showToast(`Welcome back, ${data.user.name}! Redirecting...`, 'success');
 
-    // Redirect to homepage
+    // Redirect — students who haven't onboarded go to onboarding first
     setTimeout(() => {
-     const role = data.user.role;
-window.location.href = role === 'business' ? 'business.html' : 'student.html';
+      const role = data.user.role;
+      if (role === 'business') {
+        window.location.href = 'business.html';
+      } else if (!data.user.onboardingComplete) {
+        window.location.href = 'onboarding.html';
+      } else {
+        window.location.href = 'student.html';
+      }
     }, 1500);
 
   } catch (err) {

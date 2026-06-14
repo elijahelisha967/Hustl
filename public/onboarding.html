@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hustl — Get Started</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #080d1a;
+      --surface:   #0f1729;
+      --card:      #131e35;
+      --border:    #1e2d4a;
+      --green:     #22c55e;
+      --green-dim: #16a34a;
+      --text:      #f1f5f9;
+      --muted:     #64748b;
+      --pill-bg:   #1a2540;
+      --pill-sel:  #16a34a;
+      --radius:    16px;
+      --trans:     0.3s ease;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 48px;
+    }
+
+    /* ── LOGO ── */
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--green);
+      letter-spacing: -0.5px;
+      margin-bottom: 28px;
+      align-self: flex-start;
+    }
+
+    /* ── PROGRESS BAR ── */
+    .progress-wrap {
+      width: 100%;
+      max-width: 480px;
+      margin-bottom: 8px;
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .progress-bar {
+      height: 4px;
+      background: var(--border);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--green);
+      border-radius: 99px;
+      transition: width var(--trans);
+    }
+
+    /* ── STEP DOTS ── */
+    .dots {
+      display: flex;
+      gap: 8px;
+      margin: 16px 0 28px;
+    }
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      transition: background var(--trans), transform var(--trans);
+    }
+    .dot.active { background: var(--green); transform: scale(1.3); }
+    .dot.done   { background: var(--green-dim); }
+
+    /* ── CARD ── */
+    .card {
+      width: 100%;
+      max-width: 480px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+    }
+
+    .step-header { margin-bottom: 24px; }
+    .step-eyebrow {
+      font-size: 0.7rem;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .step-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .step-sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ── FIELDS ── */
+    .field { margin-bottom: 18px; }
+    label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 7px;
+    }
+    input, select {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color var(--trans);
+      appearance: none;
+    }
+    input::placeholder { color: var(--muted); }
+    input:focus, select:focus { border-color: var(--green); }
+    select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748b' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+
+    /* ── PHOTO UPLOAD ── */
+    .photo-row { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+    .avatar-preview {
+      width: 68px; height: 68px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 2px dashed var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      overflow: hidden;
+      flex-shrink: 0;
+      transition: border-color var(--trans);
+    }
+    .avatar-preview img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .avatar-preview.has-img { border-style: solid; border-color: var(--green); }
+    .photo-btn {
+      background: var(--pill-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 9px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background var(--trans);
+    }
+    .photo-btn:hover { background: var(--border); }
+    #photoInput { display: none; }
+
+    /* ── SKILL PILLS ── */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .skill-pill {
+      background: var(--pill-bg);
+      border: 1.5px solid var(--border);
+      color: var(--text);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 9px 14px;
+      border-radius: 99px;
+      cursor: pointer;
+      user-select: none;
+      transition: background var(--trans), border-color var(--trans), transform 0.15s;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .skill-pill:active { transform: scale(0.96); }
+    .skill-pill.selected {
+      background: var(--pill-sel);
+      border-color: var(--green);
+      color: #fff;
+    }
+    .skill-pill .pill-icon { font-size: 1rem; }
+    .skills-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 14px;
+    }
+    .selected-count {
+      font-weight: 700;
+      color: var(--green);
+    }
+
+    /* ── BANK SECTION ── */
+    .bank-tip {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--green);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    /* ── DONE SCREEN ── */
+    .done-screen {
+      text-align: center;
+      padding: 12px 0 8px;
+    }
+    .done-icon {
+      font-size: 3.5rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .done-screen h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; }
+    .done-screen p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+    .done-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin: 20px 0;
+    }
+    .done-tag {
+      background: var(--pill-sel);
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 99px;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .btn {
+      flex: 1;
+      padding: 14px;
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: opacity var(--trans), transform 0.15s;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary {
+      background: var(--green);
+      color: #000;
+    }
+    .btn-primary:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .btn-back {
+      background: var(--card);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      flex: 0 0 auto;
+      padding: 14px 18px;
+    }
+
+    /* ── STEP VISIBILITY ── */
+    .step { display: none; }
+    .step.active { display: block; }
+
+    /* ── ERROR MSG ── */
+    .err-msg {
+      font-size: 0.78rem;
+      color: #f87171;
+      margin-top: 6px;
+      display: none;
+    }
+    .err-msg.show { display: block; }
+
+    /* ── LOADING ── */
+    .loading-spinner {
+      display: inline-block;
+      width: 16px; height: 16px;
+      border: 2px solid #000;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+<div class="logo">hustl.</div>
+
+<div class="progress-wrap">
+  <div class="progress-label">
+    <span id="stepLabel">Step 1 of 4</span>
+    <span id="stepName">Your Profile</span>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill" style="width:25%"></div>
+  </div>
+</div>
+
+<div class="dots">
+  <div class="dot active" id="dot1"></div>
+  <div class="dot" id="dot2"></div>
+  <div class="dot" id="dot3"></div>
+  <div class="dot" id="dot4"></div>
+</div>
+
+<div class="card">
+
+  <!-- ────── STEP 1: PROFILE ────── -->
+  <div class="step active" id="step1">
+    <div class="step-header">
+      <div class="step-eyebrow">Getting started</div>
+      <div class="step-title">Set up your profile</div>
+      <div class="step-sub">This is how businesses see you</div>
+    </div>
+
+    <div class="photo-row">
+      <div class="avatar-preview" id="avatarPreview">🧑</div>
+      <div>
+        <button class="photo-btn" onclick="document.getElementById('photoInput').click()">Upload Photo</button>
+        <input type="file" id="photoInput" accept="image/*" onchange="handlePhoto(this)"/>
+        <div style="font-size:0.72rem;color:var(--muted);margin-top:5px;">JPG or PNG, max 2MB</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Full Name</label>
+      <input type="text" id="fullName" placeholder="e.g. Chukwuemeka Okafor"/>
+      <div class="err-msg" id="nameErr">Please enter your full name</div>
+    </div>
+
+    <div class="field">
+      <label>University / School</label>
+      <input type="text" id="school" placeholder="e.g. University of Lagos"/>
+      <div class="err-msg" id="schoolErr">Please enter your school</div>
+    </div>
+
+    <div class="field">
+      <label>Department / Course</label>
+      <input type="text" id="department" placeholder="e.g. Computer Science"/>
+    </div>
+
+    <div class="field">
+      <label>Year of Study</label>
+      <select id="yearOfStudy">
+        <option value="" disabled selected>Select year</option>
+        <option value="100">100 Level</option>
+        <option value="200">200 Level</option>
+        <option value="300">300 Level</option>
+        <option value="400">400 Level</option>
+        <option value="500">500 Level</option>
+        <option value="postgrad">Postgraduate</option>
+      </select>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="goStep(2)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ────── STEP 2: SKILLS ────── -->
+  <div class="step" id="step2">
+    <div class="step-header">
+      <div class="step-eyebrow">What you offer</div>
+      <div class="step-title">Pick your skills</div>
+      <div class="step-sub">Choose up to 5. Businesses match you based on these.</div>
+    </div>
+
+    <div class="skills-grid" id="skillsGrid">
+      <!-- pills injected by JS -->
+    </div>
+    <div class="skills-note">
+      <span class="selected-count" id="selectedCount">0</span> / 5 selected
+    </div>
+    <div class="err-msg" id="skillsErr">Pick at least 1 skill to continue</div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" onclick="goStep(1)">←</button>
+      <button class="btn btn-primary" onclick="goStep(3)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ────── STEP 3: BANK DETAILS ────── -->
+  <div class="step" id="step3">
+    <div class="step-header">
+      <div class="step-eyebrow">Get paid</div>
+      <div class="step-title">Bank details</div>
+      <div class="step-sub">We use this to send your earnings after tasks</div>
+    </div>
+
+    <div class="bank-tip">
+      🔒 Your bank info is stored securely and only used for payouts. You can update this anytime from settings.
+    </div>
+
+    <div class="field">
+      <label>Bank Name</label>
+      <select id="bankName">
+        <option value="" disabled selected>Select your bank</option>
+        <option>Access Bank</option>
+        <option>First Bank</option>
+        <option>GTBank</option>
+        <option>Zenith Bank</option>
+        <option>UBA</option>
+        <option>Fidelity Bank</option>
+        <option>Kuda Bank</option>
+        <option>Opay</option>
+        <option>Palmpay</option>
+        <option>Moniepoint</option>
+        <option>Wema Bank</option>
+        <option>Sterling Bank</option>
+        <option>FCMB</option>
+        <option>Stanbic IBTC</option>
+        <option>Other</option>
+      </select>
+      <div class="err-msg" id="bankNameErr">Select your bank</div>
+    </div>
+
+    <div class="field">
+      <label>Account Number</label>
+      <input type="tel" id="accountNumber" placeholder="10-digit account number" maxlength="10" inputmode="numeric"/>
+      <div class="err-msg" id="accountErr">Enter a valid 10-digit account number</div>
+    </div>
+
+    <div class="field">
+      <label>Account Name</label>
+      <input type="text" id="accountName" placeholder="Name on account"/>
+      <div class="err-msg" id="accountNameErr">Enter the account holder's name</div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-back" onclick="goStep(2)">←</button>
+      <button class="btn btn-primary" id="submitBtn" onclick="submitOnboarding()">Finish Setup</button>
+    </div>
+  </div>
+
+  <!-- ────── STEP 4: DONE ────── -->
+  <div class="step" id="step4">
+    <div class="done-screen">
+      <span class="done-icon">🎉</span>
+      <h2>You're in, <span id="doneFirstName"></span>!</h2>
+      <p>Your profile is live. Businesses in your area can now find and hire you for tasks.</p>
+
+      <div class="done-tags" id="doneTags"></div>
+
+      <div style="font-size:0.82rem;color:var(--muted);margin-bottom:8px;">
+        Join the WhatsApp group to get task alerts instantly 👇
+      </div>
+
+      <div class="btn-row" style="flex-direction:column;">
+        <button class="btn btn-primary" onclick="joinWhatsApp()">Join WhatsApp Group</button>
+        <button class="btn btn-back" style="text-align:center;" onclick="goToDashboard()">Go to Dashboard</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /card -->
+
+<script>
+  const BACKEND = 'https://hustl.up.railway.app';
+
+  const SKILLS = [
+    { id: 'social_media',   label: 'Social Media',     icon: '📱' },
+    { id: 'graphic_design', label: 'Graphic Design',   icon: '🎨' },
+    { id: 'video_editing',  label: 'Video Editing',    icon: '🎬' },
+    { id: 'copywriting',    label: 'Content Writing',  icon: '✍️' },
+    { id: 'data_entry',     label: 'Data Entry',       icon: '📊' },
+    { id: 'delivery',       label: 'Delivery & Errands', icon: '🛵' },
+    { id: 'event_staffing', label: 'Event Staffing',   icon: '🎪' },
+    { id: 'tutoring',       label: 'Tutoring',         icon: '📚' },
+    { id: 'research',       label: 'Research & Writing', icon: '🔍' },
+    { id: 'transcription',  label: 'Transcription',    icon: '🎙️' },
+    { id: 'customer_service', label: 'Customer Service', icon: '💬' },
+    { id: 'photography',    label: 'Photography',      icon: '📸' },
+  ];
+
+  let selectedSkills = new Set();
+  let photoFile = null;
+  let currentStep = 1;
+
+  // ── RENDER SKILLS ──
+  const grid = document.getElementById('skillsGrid');
+  SKILLS.forEach(skill => {
+    const pill = document.createElement('div');
+    pill.className = 'skill-pill';
+    pill.dataset.id = skill.id;
+    pill.innerHTML = `<span class="pill-icon">${skill.icon}</span>${skill.label}`;
+    pill.addEventListener('click', () => toggleSkill(skill.id, pill));
+    grid.appendChild(pill);
+  });
+
+  function toggleSkill(id, el) {
+    if (selectedSkills.has(id)) {
+      selectedSkills.delete(id);
+      el.classList.remove('selected');
+    } else {
+      if (selectedSkills.size >= 5) return;
+      selectedSkills.add(id);
+      el.classList.add('selected');
+    }
+    document.getElementById('selectedCount').textContent = selectedSkills.size;
+  }
+
+  // ── PHOTO HANDLER ──
+  function handlePhoto(input) {
+    const file = input.files[0];
+    if (!file) return;
+    photoFile = file;
+    const reader = new FileReader();
+    reader.onload = e => {
+      const preview = document.getElementById('avatarPreview');
+      preview.innerHTML = `<img src="${e.target.result}" alt="photo"/>`;
+      preview.classList.add('has-img');
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // ── PROGRESS UPDATE ──
+  const stepLabels = ['Your Profile', 'Your Skills', 'Bank Details', 'All Done!'];
+  function updateProgress(step) {
+    document.getElementById('stepLabel').textContent = `Step ${step} of 4`;
+    document.getElementById('stepName').textContent = stepLabels[step - 1];
+    document.getElementById('progressFill').style.width = `${step * 25}%`;
+    for (let i = 1; i <= 4; i++) {
+      const dot = document.getElementById(`dot${i}`);
+      dot.className = 'dot' + (i < step ? ' done' : i === step ? ' active' : '');
+    }
+  }
+
+  // ── VALIDATION ──
+  function showErr(id, show) {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('show', show);
+  }
+
+  function validateStep(step) {
+    if (step === 1) {
+      const name = document.getElementById('fullName').value.trim();
+      const school = document.getElementById('school').value.trim();
+      showErr('nameErr', !name);
+      showErr('schoolErr', !school);
+      return name && school;
+    }
+    if (step === 2) {
+      const ok = selectedSkills.size > 0;
+      showErr('skillsErr', !ok);
+      return ok;
+    }
+    if (step === 3) {
+      const bank = document.getElementById('bankName').value;
+      const acc = document.getElementById('accountNumber').value.trim();
+      const accName = document.getElementById('accountName').value.trim();
+      showErr('bankNameErr', !bank);
+      showErr('accountErr', acc.length !== 10);
+      showErr('accountNameErr', !accName);
+      return bank && acc.length === 10 && accName;
+    }
+    return true;
+  }
+
+  // ── STEP NAVIGATION ──
+  function goStep(n) {
+    if (n > currentStep && !validateStep(currentStep)) return;
+    document.getElementById(`step${currentStep}`).classList.remove('active');
+    currentStep = n;
+    document.getElementById(`step${currentStep}`).classList.add('active');
+    updateProgress(currentStep);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── SUBMIT ──
+  async function submitOnboarding() {
+    if (!validateStep(3)) return;
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="loading-spinner"></span>Saving...';
+
+    const token = localStorage.getItem('hustl_token');
+    const payload = {
+      fullName:      document.getElementById('fullName').value.trim(),
+      school:        document.getElementById('school').value.trim(),
+      department:    document.getElementById('department').value.trim(),
+      yearOfStudy:   document.getElementById('yearOfStudy').value,
+      skills:        Array.from(selectedSkills),
+      bankName:      document.getElementById('bankName').value,
+      accountNumber: document.getElementById('accountNumber').value.trim(),
+      accountName:   document.getElementById('accountName').value.trim(),
+      onboardingComplete: true,
+    };
+
+    try {
+      const res = await fetch(`${BACKEND}/api/users/onboarding`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!res.ok) throw new Error('Server error');
+
+      // ── SHOW DONE SCREEN ──
+      const firstName = payload.fullName.split(' ')[0];
+      document.getElementById('doneFirstName').textContent = firstName;
+
+      const tagsEl = document.getElementById('doneTags');
+      tagsEl.innerHTML = '';
+      SKILLS.filter(s => selectedSkills.has(s.id)).forEach(s => {
+        const tag = document.createElement('div');
+        tag.className = 'done-tag';
+        tag.textContent = `${s.icon} ${s.label}`;
+        tagsEl.appendChild(tag);
+      });
+
+      localStorage.setItem('hustl_onboarded', 'true');
+      goStep(4);
+
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = 'Finish Setup';
+      alert('Something went wrong. Check your connection and try again.');
+    }
+  }
+
+  function joinWhatsApp() {
+    // Replace with your actual WhatsApp group link
+    window.open('https://chat.whatsapp.com/K0U6SKyAUOa9wOXlcuYHIU', '_blank');
+  }
+
+  function goToDashboard() {
+    window.location.href = '/dashboard.html';
+  }
+
+  // ── ON LOAD: SKIP IF ALREADY ONBOARDED ──
+  window.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('hustl_onboarded') === 'true') {
+      window.location.href = '/dashboard.html';
+    }
+  });
+</script>
+</body>
+</html>
